@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledLink = styled(Link)`
-  color: #FFFFFF;
-  text-decoration: none;
-  width: 100%;
-  text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
 `;
 
 export const NavDiv = styled.div`
@@ -77,15 +77,15 @@ export const CurrencyDiv = styled.div`
 `
 
 export const Dollar = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-height: 25px;
-width: 25px;
-border-radius: 50%;
-background: #191B1F;
-margin: 0 5px 0 0px;
-color: #00FF5F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #191B1F;
+    margin: 0 5px 0 0px;
+    color: #00FF5F;
 `
 
 export const Dropdown = styled.select`
