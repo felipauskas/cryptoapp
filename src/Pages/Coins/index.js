@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import CryptoChart from '../../components/CryptoChart'
+import { Container, Overview } from './styles'
 
 export default class Coins extends Component {
     render() {
         return (
-            <div>
-                <h1>Coins Page</h1>
-            </div>
+            <Container>
+                <Overview>Your overview</Overview>
+                <CryptoChart />
+            </Container>
         )
     }
 }

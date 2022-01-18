@@ -25,4 +25,4 @@ export const CoinSlider = styled.input`
   width: 75px;
   border-radius: 5px;
   background: ##2172E5;
-`
+`;
