@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
-import { Chart, Filler } from "chart.js";
-import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend} from "chart.js";
+import {Chart, CategoryScale, Filler, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend} from "chart.js";
 import { CurrentDate, ChartDiv, DataLabel, DataValue } from './styles';
 import { lineChartOptions, barChartOptions, convertToMoney } from './utils'
 
-ChartJS.register(
+Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
   BarElement,
+  Filler,
   Title,
   Tooltip,
   Legend
 );
-
-Chart.register(Filler);
 
 export default class CryptoChart extends Component {
     state = {
@@ -52,9 +50,6 @@ export default class CryptoChart extends Component {
 
     componentDidMount() {
         this.getData();
-    }
-
-    componentDidUpdate() {
     }
 
 

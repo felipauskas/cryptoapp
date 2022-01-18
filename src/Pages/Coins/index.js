@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CryptoChart from '../../Components/CryptoChart'
+import CryptoChart from '../../components/CryptoChart'
 import { Container, Overview } from './styles'
 
 export default class Coins extends Component {
