@@ -3,7 +3,8 @@ import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {Chart, CategoryScale, Filler, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend} from "chart.js";
 import { CurrentDate, ChartDiv, DataLabel, DataValue } from './styles';
-import { lineChartOptions, barChartOptions, convertToMoney } from './utils'
+import { convertToMoney } from '../../utils';
+import { lineChartOptions, barChartOptions } from './utils'
 
 Chart.register(
   CategoryScale,
