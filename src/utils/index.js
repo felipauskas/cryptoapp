@@ -1,0 +1,1 @@
+export const convertToMoney = new Intl.NumberFormat('us-EN', {minimumFractionDigits: 0});

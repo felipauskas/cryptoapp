@@ -6,7 +6,8 @@ export const ChartDiv = styled.div`
     width: 45%;
     /* height: 700px; */
     background: #191B1F;
-    margin: 0 0 0 20px;
+    margin: 0 0 40px 20px;
+    border-radius: 12px;
 `
 
 export const DataLabel = styled.span`
