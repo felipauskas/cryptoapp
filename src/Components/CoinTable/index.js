@@ -28,12 +28,8 @@ export default class CoinTable extends Component {
         this.getData();
     }
 
-    componentDidUpdate() {
-        console.log(this.state);
-    }
-
     render() {
-        const {coinData, hasData} = this.state;
+        const { coinData, hasData } = this.state;
         return (
             <>
             {hasData && (

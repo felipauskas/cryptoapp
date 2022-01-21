@@ -6,9 +6,19 @@ import SparklineChart from './chart';
 
 
 export default function CoinTableData(props) {
-    const {market_cap_rank, image, name, current_price, hourchange,
-            daychange, weekchange, total_volume, market_cap,
-            circulating_supply, total_supply, sparkline_in_7d} = props;
+    const {
+        market_cap_rank,
+        image,
+        name,
+        current_price,
+        hourchange,
+        daychange,
+        weekchange,
+        total_volume,
+        market_cap,
+        circulating_supply,
+        total_supply,
+        sparkline_in_7d } = props;
     return(
         <CoinDisplayDiv>
             <Rank>{market_cap_rank}</Rank>
