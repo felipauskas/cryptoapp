@@ -50,6 +50,7 @@ export const CoinPrice = styled.span`
 export const HourChange = styled.span``;
 
 export const DayChange = styled.span``;
+
 export const WeekChange = styled.span``;
 
 export const VolumeMarket = styled.div``;

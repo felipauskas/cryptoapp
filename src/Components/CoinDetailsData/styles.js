@@ -97,4 +97,5 @@ export const MarketDiv = styled.div`
 export const Title = styled.span`
 	font-weight: 900;
 `;
+
 export const Details = styled.span``;
