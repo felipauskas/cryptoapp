@@ -23,6 +23,8 @@ import {
 import millify from "millify";
 import SparklineChart from "./chart";
 
+console.log("test");
+
 export default function CoinTableData(props) {
 	const {
 		market_cap_rank,
@@ -65,10 +67,7 @@ export default function CoinTableData(props) {
 				</CoinSlider>
 			</CirculatingSupply>
 			<Last7d>
-				<SparklineChart
-					labels={sparkline_in_7d.price}
-					data={sparkline_in_7d.price}
-				/>
+				<SparklineChart labels={sparkline_in_7d.price} data={sparkline_in_7d.price} />
 			</Last7d>
 		</CoinDisplayDiv>
 	);
