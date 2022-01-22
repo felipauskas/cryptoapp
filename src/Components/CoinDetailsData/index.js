@@ -41,6 +41,13 @@ export default class CoinDetailsData extends Component {
 	componentDidMount() {
 		this.getCoin(this.props.coin);
 	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.coin !== this.props.coin) {
+			this.getCoin(this.props.coin);
+		}
+	}
+
 	render() {
 		const { hasData, coinData } = this.state;
 		const currency = this.props.currency;

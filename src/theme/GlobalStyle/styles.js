@@ -10,8 +10,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 export const Wrapper = styled.div`
-    display: flex;
-    flex-flow: column;
-    align-content: flex-start;
-    width: 100%;
+	display: flex;
+	flex-flow: column;
+	align-content: flex-start;
+	width: 100%;
 `;
