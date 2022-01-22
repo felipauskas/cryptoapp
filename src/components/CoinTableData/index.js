@@ -24,6 +24,7 @@ import millify from "millify";
 import SparklineChart from "./chart";
 
 console.log("test");
+console.log("test2");
 
 export default function CoinTableData(props) {
 	const {

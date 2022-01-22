@@ -15,8 +15,9 @@ import {
 	SiteDiv,
 	SiteName,
 	Title,
-	Details,
 } from "./styles";
+
+console.log("test");
 
 export default class CoinDetailsData extends Component {
 	state = {
@@ -52,15 +53,8 @@ export default class CoinDetailsData extends Component {
 		const { hasData, coinData } = this.state;
 		const currency = this.props.currency;
 		const { image, name, market_data, links } = coinData;
-		const {
-			current_price,
-			ath,
-			atl,
-			atl_date,
-			ath_date,
-			market_cap,
-			fully_diluted_valuation,
-		} = Object(market_data);
+		const { current_price, ath, atl, atl_date, ath_date, market_cap, fully_diluted_valuation } =
+			Object(market_data);
 		return (
 			<>
 				{hasData && (
@@ -86,9 +80,7 @@ export default class CoinDetailsData extends Component {
 						</PriceDiv>
 						<MarketDiv>
 							<Title>Market Cap: {market_cap[currency]}</Title>
-							<Title>
-								Fully Diluted Valudation: {fully_diluted_valuation[currency]}
-							</Title>
+							<Title>Fully Diluted Valudation: {fully_diluted_valuation[currency]}</Title>
 							<Title>Volume 24h:</Title>
 							<Title>Volume / Market:</Title>
 							<Title>Total Volume:</Title>
