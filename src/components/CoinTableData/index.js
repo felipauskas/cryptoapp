@@ -65,10 +65,7 @@ export default function CoinTableData(props) {
 				</CoinSlider>
 			</CirculatingSupply>
 			<Last7d>
-				<SparklineChart
-					labels={sparkline_in_7d.price}
-					data={sparkline_in_7d.price}
-				/>
+				<SparklineChart labels={sparkline_in_7d.price} data={sparkline_in_7d.price} />
 			</Last7d>
 		</CoinDisplayDiv>
 	);

@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const ChartDiv = styled.div`
 	display: flex;
 	flex-flow: column;
-	width: 45%;
+	width: 42%;
 	/* height: 700px; */
 	background: #191b1f;
-	margin: 0 0 40px 20px;
+	margin: 0 0 40px 100px;
 	border-radius: 12px;
 `;
 

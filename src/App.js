@@ -26,17 +26,11 @@ export default class App extends Component {
 					<NavBar handleChange={this.handleCurrency} />
 					<MarketBar currency={this.state.currency} />
 					<Switch>
-						<Route
-							exact
-							path="/"
-							render={(props) => <Coins currency={this.state.currency} />}
-						/>
+						<Route exact path="/" render={(props) => <Coins currency={this.state.currency} />} />
 						<Route
 							exact
 							path="/coins/:coin"
-							render={(props) => (
-								<CoinDetails currency={this.state.currency} {...props} />
-							)}
+							render={(props) => <CoinDetails currency={this.state.currency} {...props} />}
 						/>
 						<Route exact path="/portfolio" component={Portfolio} />
 					</Switch>
