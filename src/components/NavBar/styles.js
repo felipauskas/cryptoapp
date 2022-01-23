@@ -7,7 +7,7 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 	width: 100%;
 	text-align: center;
-	font-size: 22px;
+	font-size: 18px;
 `;
 
 export const NavDiv = styled.div`
@@ -20,7 +20,7 @@ export const NavDiv = styled.div`
 export const NavItems = styled.div`
 	display: flex;
 	justify-content: center;
-	margin: 20px 20px;
+	margin: 20px 20px 20px 100px;
 	width: 100%;
 `;
 

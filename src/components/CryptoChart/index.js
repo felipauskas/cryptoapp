@@ -14,7 +14,7 @@ import {
 	Legend,
 } from "chart.js";
 import { CurrentDate, ChartDiv, DataLabel, DataValue } from "./styles";
-import { convertToMoney } from "../../utils";
+import { convertToMoney } from "utils";
 import { lineChartOptions, barChartOptions } from "./chartUtils";
 
 Chart.register(
@@ -53,9 +53,7 @@ export default class CryptoChart extends Component {
 				return date;
 			});
 			const dailyPrice = data.prices.map((element) => element[1].toFixed(2));
-			const totalVolumes = data.total_volumes.map((element) =>
-				element[1].toFixed(0)
-			);
+			const totalVolumes = data.total_volumes.map((element) => element[1].toFixed(0));
 			this.setState({
 				isLoading: false,
 				dateLabels: dateLabels,

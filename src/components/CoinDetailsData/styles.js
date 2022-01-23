@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { ReactComponent as Layer } from "./layer.svg";
+import { ReactComponent as Plus } from "./plus.svg";
+import { ReactComponent as Links } from "./link.svg";
+import { ReactComponent as Group } from "./group.svg";
+import { ReactComponent as Waves } from "./waves.svg";
 
 export const Container = styled.div`
 	display: flex;
 	flex-flow: row;
 	justify-content: space-around;
-	width: 100%;
-	margin: 20px 0 0px 20px;
+	width: 70%;
+	gap: 2.5%;
 `;
 
 export const ImageContainer = styled.div`
@@ -14,7 +18,7 @@ export const ImageContainer = styled.div`
 	flex-flow: column;
 	align-items: flex-start;
 	justify-content: space-between;
-	width: 10%;
+	width: 40%;
 	height: 300px;
 `;
 
@@ -24,7 +28,8 @@ export const ImageDiv = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 200px;
+	gap: 10%;
+	height: 230px;
 	background: #191b1f;
 	border-radius: 12px;
 `;
@@ -55,8 +60,9 @@ export const SiteDiv = styled.div`
 `;
 
 export const SiteName = styled.span`
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
+	flex-grow: 2;
 `;
 
 export const PriceDiv = styled.div`
@@ -64,7 +70,7 @@ export const PriceDiv = styled.div`
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
-	width: 20%;
+	width: 70%;
 	background: #191b1f;
 	border-radius: 12px;
 `;
@@ -89,13 +95,77 @@ export const MarketDiv = styled.div`
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
-	width: 30%;
+	width: 90%;
 	background: #191b1f;
 	border-radius: 12px;
+`;
+
+export const DetailsDiv = styled.div`
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 30px;
+`;
+
+export const PlusSVG = styled(Plus)`
+	margin: 5px 20px;
 `;
 
 export const Title = styled.span`
 	font-weight: 900;
 `;
 
-export const Details = styled.span``;
+export const Details = styled.span`
+	margin: 0 0 0 10px;
+	font-weight: 300;
+`;
+
+export const Description = styled.span`
+	font-size: 18px;
+	width: 70%;
+	font-weight: 300;
+	margin: 20px 0 20px 20px;
+`;
+
+export const DescriptionContainer = styled.div`
+	width: 70%;
+	background: #191b1f;
+	border-radius: 12px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-flow: column;
+	margin: 0 0 30px 0;
+	padding: 0 0 30px 0;
+`;
+
+export const CoinDescription = styled.span`
+	text-align: center;
+	width: 100%;
+`;
+
+export const SiteContainer = styled.div`
+	display: flex;
+	width: 70%;
+	gap: 20px;
+`;
+
+export const BoxDiv = styled.div`
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	border-radius: 12px;
+	height: 64px;
+	width: 33%;
+	background: #191b1f;
+	margin: 0 0 40px 0;
+`;
+
+export const LinkSVG = styled(Links)`
+	margin: 0 0 0 20px;
+`;
+
+export const GroupSVG = styled(Group)`
+	margin: 0 20px 0 0;
+`;
+
+export const WavesSVG = styled(Waves)``;

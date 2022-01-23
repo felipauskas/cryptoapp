@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const TableDiv = styled.div`
 	display: flex;
 	flex-flow: column wrap;
-	width: 91%;
+	width: 89%;
 	background: #191b1f;
-	margin: 0px 0px 0 20px;
+	margin: 0px 0px 0 100px;
 	border-radius: 12px;
 `;
 

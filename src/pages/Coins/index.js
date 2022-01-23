@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CoinTable from "../../components/CoinTable";
-import CryptoChart from "../../components/CryptoChart";
+import CoinTable from "components/CoinTable";
+import CryptoChart from "components/CryptoChart";
 import { Container, Overview } from "./styles";
 
 export default class Coins extends Component {
