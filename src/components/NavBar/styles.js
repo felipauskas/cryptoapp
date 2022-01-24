@@ -1,13 +1,23 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as Search } from "./search.svg";
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 20px 0 0;
+	width: 167px;
+	height: 57px;
+	background: transparent;
+	border-radius: 12px;
 	color: #ffffff;
 	text-decoration: none;
-	width: 100%;
-	text-align: center;
 	font-size: 18px;
+
+	&.someClass {
+		background: #2c2f36;
+	}
 `;
 
 export const NavDiv = styled.div`
@@ -27,17 +37,6 @@ export const NavItems = styled.div`
 export const PagesDiv = styled.div`
 	display: flex;
 	width: 50%;
-`;
-
-export const MenuItem = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0 20px 0 0;
-	width: 167px;
-	height: 57px;
-	background: #2c2f36;
-	border-radius: 12px;
 `;
 
 export const ActionsDiv = styled.div`

@@ -1,82 +1,61 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { CoinResult, ResultsDiv, SearchBar, StyledForm } from "./styles";
 
-export default class NavBarSearch extends Component {
-	state = {
-		coinData: [],
-		inputQuery: "",
-		hasData: false,
-		isLoading: false,
-		hasError: false,
-	};
+const NavBarSearch = () => {
+	const [isLoading, setLoading] = useState(false);
+	const [hasError, setError] = useState(false);
+	const [coinData, setCoinData] = useState([]);
+	const [inputQuery, setInput] = useState("");
+	const [isResultsOpen, setResultsOpen] = useState(false);
 
-	getCoin = async (inputQuery) => {
+	const getCoin = async (inputQuery) => {
 		try {
-			const { data } = await axios(
-				`https://crypto-app-server.herokuapp.com/coins/${inputQuery}`
-			);
-			this.setState({
-				hasData: true,
-				coinData: data,
-				isLoading: false,
-				hasError: false,
-			});
+			const { data } = await axios(`https://crypto-app-server.herokuapp.com/coins/${inputQuery}`);
+			setResultsOpen(true);
+			setCoinData(data);
+			setLoading(false);
+			setError(false);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	handleChange = (e) => {
-		this.setState({
-			inputQuery: e.target.value,
-			hasData: false,
-			isLoading: false,
-		});
+	const handleChange = (e) => {
+		setInput(e.target.value);
+		setResultsOpen(false);
 	};
 
-	handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		this.getCoin(this.state.inputQuery);
+		getCoin(inputQuery);
 	};
 
-	handleBlur = (e) => {
-		this.setState({ inputQuery: e.target.value });
+	const handleClick = (e) => {
+		setInput("");
+		setResultsOpen(false);
 	};
 
-	handleClick = (e) => {
-		this.setState({
-			hasData: false,
-			isLoading: false,
-			coinData: [],
-			inputQuery: "",
-		});
-	};
+	return (
+		<>
+			<StyledForm onSubmit={handleSubmit}>
+				<SearchBar
+					onChange={handleChange}
+					value={inputQuery}
+					type="search"
+					placeholder="Search..."
+				/>
+				<ResultsDiv>
+					{isResultsOpen &&
+						coinData.map((element) => (
+							<CoinResult onClick={handleClick} to={`/coins/${element.id}`} key={element.id}>
+								{element.name}
+							</CoinResult>
+						))}
+				</ResultsDiv>
+			</StyledForm>
+		</>
+	);
+};
 
-	render() {
-		const { hasData, coinData } = this.state;
-		return (
-			<>
-				<StyledForm onSubmit={this.handleSubmit}>
-					<SearchBar
-						onChange={this.handleChange}
-						value={this.state.inputQuery}
-						type="search"
-						placeholder="Search..."
-					/>
-					<ResultsDiv>
-						{hasData &&
-							coinData.map((element) => (
-								<CoinResult
-									onClick={this.handleClick}
-									to={`/coins/${element.id}`}
-								>
-									{element.name}
-								</CoinResult>
-							))}
-					</ResultsDiv>
-				</StyledForm>
-			</>
-		);
-	}
-}
+export default NavBarSearch;
