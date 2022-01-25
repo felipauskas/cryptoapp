@@ -8,7 +8,7 @@ export default class Coins extends Component {
 		return (
 			<Container>
 				<Overview>Your overview</Overview>
-				<CryptoChart />
+				<CryptoChart currency={this.props.currency} />
 				<Overview>Your overview</Overview>
 				<CoinTable currency={this.props.currency} />
 			</Container>

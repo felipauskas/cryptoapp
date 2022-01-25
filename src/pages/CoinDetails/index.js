@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CoinDetailsData from "components/CoinDetailsData";
-import { Container, Summary } from "./styles";
+import { Container } from "./styles";
 
 export default class CoinDetails extends Component {
 	render() {
