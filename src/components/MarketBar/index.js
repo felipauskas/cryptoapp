@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import {
 	Slider,
 	MarketDisplay,
@@ -10,33 +10,16 @@ import {
 	SliderDiv,
 } from "./styles";
 import millify from "millify";
+import { getMarketData } from "store/marketBar/marketActions";
 
 const MarketBar = (props) => {
-	const [isLoading, setLoading] = useState(false);
-	const [hasError, setError] = useState(false);
-	const [marketData, setMarketData] = useState("");
-	const [hasData, setData] = useState(false);
-
-	const getCrypto = async () => {
-		setError(false);
-		setLoading(true);
-		try {
-			const { data } = await axios(`https://api.coingecko.com/api/v3/global`);
-			setLoading(false);
-			setMarketData(data);
-			setData(true);
-		} catch (error) {
-			console.log(error);
-			setLoading(false);
-			setError(true);
-		}
-	};
+	const { hasData, marketData } = props.market;
+	const { currency } = props.currency;
+	const { data } = marketData;
 
 	useEffect(() => {
-		getCrypto();
-	}, [props.currency]);
-
-	const { data } = marketData;
+		props.getMarketData();
+	}, [currency]);
 
 	return (
 		<>
@@ -45,15 +28,12 @@ const MarketBar = (props) => {
 					<MarketDisplay>
 						<span>Coins {data.active_cryptocurrencies}</span>
 						<span>Exchanges {data.markets}</span>
-						<li>${millify(data.total_market_cap[props.currency])}</li>
+						<li>${millify(data.total_market_cap[currency])}</li>
 						<SliderDiv>
-							<li>${millify(data.total_volume[props.currency])}</li>
+							<li>${millify(data.total_volume[currency])}</li>
 							<Slider>
 								<Completion
-									size={
-										(data.total_volume[props.currency] / data.total_market_cap[props.currency]) *
-										100
-									}
+									size={(data.total_volume[currency] / data.total_market_cap[currency]) * 100}
 								/>
 							</Slider>
 						</SliderDiv>
@@ -78,4 +58,13 @@ const MarketBar = (props) => {
 	);
 };
 
-export default MarketBar;
+const mapStateToProps = (state) => ({
+	market: state.market,
+	currency: state.currency,
+});
+
+const mapDispatchToProps = {
+	getMarketData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MarketBar);

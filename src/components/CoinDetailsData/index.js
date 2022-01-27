@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getCoin } from "store/coinDetails/detailsActions";
 import { convertToMoney } from "utils";
 import * as dayjs from "dayjs";
 import {
@@ -31,30 +32,8 @@ import {
 } from "./styles";
 
 const CoinDetailsData = (props) => {
-	const [isLoading, setLoading] = useState(false);
-	const [hasError, setError] = useState(false);
-	const [hasData, setData] = useState(false);
-	const [coinData, setCoinData] = useState(null);
-
-	const getCoin = async (coinName) => {
-		setLoading(true);
-		setData(false);
-		setError(false);
-		try {
-			const { data } = await axios(
-				`https://api.coingecko.com/api/v3/coins/${coinName}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
-			);
-			setLoading(false);
-			setData(true);
-			setCoinData(data);
-		} catch (error) {
-			console.log(error);
-			setError(true);
-			setData(false);
-		}
-	};
-
-	const currency = props.currency;
+	const currency = props.currency.currency;
+	const { coinData, hasData } = props.coinDetails;
 	const { image, name, market_data, links, description } = Object(coinData);
 	const {
 		current_price,
@@ -72,12 +51,12 @@ const CoinDetailsData = (props) => {
 	} = Object(market_data);
 
 	useEffect(() => {
-		getCoin(props.coin);
-	}, [props.coin, props.currency]);
+		props.getCoin(props.coin);
+	}, [props.coin, currency]);
 
 	return (
 		<>
-			{coinData && (
+			{hasData && (
 				<>
 					<Description>Your Summary</Description>
 					<Container>
@@ -167,4 +146,13 @@ const CoinDetailsData = (props) => {
 	);
 };
 
-export default CoinDetailsData;
+const mapStateToProps = (state) => ({
+	coinDetails: state.coinDetails,
+	currency: state.currency,
+});
+
+const mapDispatchToProps = {
+	getCoin,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinDetailsData);

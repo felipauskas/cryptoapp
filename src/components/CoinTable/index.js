@@ -1,37 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getTableData } from "store/tableData/tableActions";
 import { TableDiv } from "./styles";
 import CoinTableTitle from "../CoinTableTitle";
 import CoinTableData from "../CoinTableData";
 
 const CoinTable = (props) => {
-	const [isLoading, setLoading] = useState(false);
-	const [hasError, setError] = useState(false);
-	const [hasData, setData] = useState(false);
-	const [coinData, setCoinData] = useState([]);
-
-	const getData = async (currency) => {
-		setError(false);
-		setLoading(true);
-		setData(false);
-		try {
-			const { data } = await axios(
-				`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=8&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-			);
-			setLoading(false);
-			setData(true);
-			setCoinData(data);
-		} catch (error) {
-			console.log(error);
-			setLoading(false);
-			setData(false);
-			setError(true);
-		}
-	};
+	const { currency } = props.currency;
 
 	useEffect(() => {
-		getData(props.currency);
-	}, [props.currency]);
+		props.getTableData(currency);
+	}, [currency]);
+
+	const { hasData, coinData } = props.table;
 
 	return (
 		<>
@@ -53,4 +34,13 @@ const CoinTable = (props) => {
 	);
 };
 
-export default CoinTable;
+const mapStateToProps = (state) => ({
+	table: state.table,
+	currency: state.currency,
+});
+
+const mapDispatchToProps = {
+	getTableData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinTable);

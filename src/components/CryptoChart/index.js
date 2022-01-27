@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
+import { getChartData } from "store/cryptoChart/chartActions";
 import {
 	Chart,
 	CategoryScale,
@@ -30,46 +31,11 @@ Chart.register(
 );
 
 const CryptoChart = (props) => {
-	const [isLoading, setLoading] = useState(false);
-	const [hasError, setError] = useState(false);
-	const [hasData, setData] = useState(false);
-	const [dateLabels, setLabels] = useState([]);
-	const [dailyPrice, setPrice] = useState([]);
-	const [totalVolumes, setVolumes] = useState([]);
-
-	const getData = async () => {
-		setError(false);
-		setLoading(true);
-		setData(false);
-		try {
-			const { data } = await axios(
-				`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${props.currency}&days=30&interval=daily`
-			);
-			const dateLabels = data.prices.map((element) => {
-				const date = new Date(element[0]).toLocaleString("en-gb", {
-					day: "numeric",
-					month: "2-digit",
-				});
-				return date;
-			});
-			const dailyPrice = data.prices.map((element) => element[1].toFixed(2));
-			const totalVolumes = data.total_volumes.map((element) => element[1].toFixed(0));
-			setLoading(false);
-			setData(true);
-			setLabels(dateLabels);
-			setPrice(dailyPrice);
-			setVolumes(totalVolumes);
-		} catch (error) {
-			console.log(error);
-			setLoading(false);
-			setData(false);
-			setError(true);
-		}
-	};
-
 	useEffect(() => {
-		getData();
-	}, [props.currency]);
+		props.getChartData();
+	}, [props.currency.currency]);
+
+	const { hasData, dailyPrice, totalVolumes, dateLabels } = props.chart;
 
 	const todayPrice = convertToMoney.format(dailyPrice.slice(-1));
 	const todayVolume = convertToMoney.format(totalVolumes.slice(-1));
@@ -124,4 +90,13 @@ const CryptoChart = (props) => {
 	);
 };
 
-export default CryptoChart;
+const mapStateToProps = (state) => ({
+	chart: state.chart,
+	currency: state.currency,
+});
+
+const mapDispatchToProps = {
+	getChartData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CryptoChart);
