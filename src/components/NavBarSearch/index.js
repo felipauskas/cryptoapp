@@ -1,25 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getResultsData } from "store/searchBar/searchActions";
 import { CoinResult, ResultsDiv, SearchBar, StyledForm } from "./styles";
 
-const NavBarSearch = () => {
-	const [isLoading, setLoading] = useState(false);
-	const [hasError, setError] = useState(false);
-	const [coinData, setCoinData] = useState([]);
+const NavBarSearch = (props) => {
 	const [inputQuery, setInput] = useState("");
 	const [isResultsOpen, setResultsOpen] = useState(false);
-
-	const getCoin = async (inputQuery) => {
-		try {
-			const { data } = await axios(`https://crypto-app-server.herokuapp.com/coins/${inputQuery}`);
-			setResultsOpen(true);
-			setCoinData(data);
-			setLoading(false);
-			setError(false);
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	const handleChange = (e) => {
 		setInput(e.target.value);
@@ -28,7 +14,8 @@ const NavBarSearch = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		getCoin(inputQuery);
+		props.getResultsData(inputQuery);
+		setResultsOpen(true);
 	};
 
 	const handleClick = (e) => {
@@ -47,7 +34,7 @@ const NavBarSearch = () => {
 				/>
 				<ResultsDiv>
 					{isResultsOpen &&
-						coinData.map((element) => (
+						props.search.coinData.map((element) => (
 							<CoinResult onClick={handleClick} to={`/coins/${element.id}`} key={element.id}>
 								{element.name}
 							</CoinResult>
@@ -58,4 +45,12 @@ const NavBarSearch = () => {
 	);
 };
 
-export default NavBarSearch;
+const mapStateToProps = (state) => ({
+	search: state.search,
+});
+
+const mapDispatchToProps = {
+	getResultsData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBarSearch);

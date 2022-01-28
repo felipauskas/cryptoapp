@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { handleCurrency } from "store/currency/currencyActions";
 import NavBarSearch from "../NavBarSearch";
 import {
 	ActionsDiv,
@@ -18,7 +20,7 @@ import {
 const NavBar = (props) => {
 	const handleChange = (e) => {
 		const currency = e.target.value;
-		props.handleChange(currency);
+		props.handleCurrency(currency.toLowerCase());
 	};
 
 	return (
@@ -52,4 +54,12 @@ const NavBar = (props) => {
 	);
 };
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+	currency: state.currency,
+});
+
+const mapDispatchToProps = {
+	handleCurrency,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
