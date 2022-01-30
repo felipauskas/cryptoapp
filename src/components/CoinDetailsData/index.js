@@ -33,7 +33,7 @@ import CoinConverter from "components/CoinDetailsConverter";
 
 const CoinDetailsData = (props) => {
 	const dispatch = useDispatch();
-	const currency = useSelector((state) => state.currency.currency);
+	const { currency } = useSelector((state) => state.currency);
 	const { coinData, hasData } = useSelector((state) => state.coinDetails);
 	const { image, name, market_data, links, description, symbol, id } = Object(coinData);
 	const {

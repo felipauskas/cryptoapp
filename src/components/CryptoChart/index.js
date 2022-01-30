@@ -32,7 +32,7 @@ Chart.register(
 
 const CryptoChart = () => {
 	const dispatch = useDispatch();
-	const currency = useSelector((state) => state.currency.currency);
+	const { currency } = useSelector((state) => state.currency);
 
 	useEffect(() => {
 		dispatch(getChartData("bitcoin", "30"));

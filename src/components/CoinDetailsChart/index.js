@@ -6,7 +6,7 @@ import { CoinChart } from "./styles";
 
 const CoinDetailsChart = (props) => {
 	const dispatch = useDispatch();
-	const currency = useSelector((state) => state.currency.currency);
+	const { currency } = useSelector((state) => state.currency);
 	const { dailyPrice, dateLabels } = useSelector((state) => state.chart);
 
 	useEffect(() => {
