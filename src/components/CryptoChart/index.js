@@ -32,10 +32,10 @@ Chart.register(
 
 const CryptoChart = (props) => {
 	useEffect(() => {
-		props.getChartData();
+		props.getChartData("bitcoin", "30");
 	}, [props.currency.currency]);
 
-	const { hasData, dailyPrice, totalVolumes, dateLabels } = props.chart;
+	const { dailyPrice, totalVolumes, dateLabels } = props.chart;
 
 	const todayPrice = convertToMoney.format(dailyPrice.slice(-1));
 	const todayVolume = convertToMoney.format(totalVolumes.slice(-1));
@@ -66,26 +66,22 @@ const CryptoChart = (props) => {
 
 	return (
 		<>
-			{hasData && (
-				<>
-					<ChartDiv>
-						<DataLabel>BTC</DataLabel>
-						<DataValue>${todayPrice}</DataValue>
-						<CurrentDate>
-							{month} {day}, {year}
-						</CurrentDate>
-						<Line data={lineChartData} options={lineChartOptions} />
-					</ChartDiv>
-					<ChartDiv>
-						<DataLabel>Volume 24</DataLabel>
-						<DataValue>${todayVolume}</DataValue>
-						<CurrentDate>
-							{month} {day}, {year}
-						</CurrentDate>
-						<Bar data={barChartData} options={barChartOptions} />
-					</ChartDiv>
-				</>
-			)}
+			<ChartDiv>
+				<DataLabel>BTC</DataLabel>
+				<DataValue>${todayPrice}</DataValue>
+				<CurrentDate>
+					{month} {day}, {year}
+				</CurrentDate>
+				<Line data={lineChartData} options={lineChartOptions} />
+			</ChartDiv>
+			<ChartDiv>
+				<DataLabel>Volume 24</DataLabel>
+				<DataValue>${todayVolume}</DataValue>
+				<CurrentDate>
+					{month} {day}, {year}
+				</CurrentDate>
+				<Bar data={barChartData} options={barChartOptions} />
+			</ChartDiv>
 		</>
 	);
 };

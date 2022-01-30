@@ -28,13 +28,13 @@ import {
 	SiteContainer,
 	LinkSVG,
 	GroupSVG,
-	WavesSVG,
 } from "./styles";
+import CoinConverter from "components/CoinDetailsConverter";
 
 const CoinDetailsData = (props) => {
 	const currency = props.currency.currency;
 	const { coinData, hasData } = props.coinDetails;
-	const { image, name, market_data, links, description } = Object(coinData);
+	const { image, name, market_data, links, description, symbol, id } = Object(coinData);
 	const {
 		current_price,
 		ath,
@@ -139,7 +139,12 @@ const CoinDetailsData = (props) => {
 							<GroupSVG />
 						</BoxDiv>
 					</SiteContainer>
-					<WavesSVG />
+					<CoinConverter
+						amount={current_price[currency]}
+						currency={currency}
+						coin={symbol}
+						name={id}
+					/>
 				</>
 			)}
 		</>

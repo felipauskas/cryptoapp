@@ -1,14 +1,14 @@
 import axios from "axios";
 
-export const getChartData = () => async (dispatch, getState) => {
+export const getChartData = (coin, duration) => async (dispatch, getState) => {
 	try {
 		dispatch({
 			type: "CHART_FETCH_ALL_DATA_PENDING",
 		});
 		const { data } = await axios(
-			`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${
+			`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${
 				getState().currency.currency
-			}&days=30&interval=daily`
+			}&days=${duration}&interval=daily`
 		);
 		const dateLabels = data.prices.map((element) => {
 			const date = new Date(element[0]).toLocaleString("en-gb", {
