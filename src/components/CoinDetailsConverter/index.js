@@ -76,18 +76,16 @@ export default function CoinConverter(props) {
 		<>
 			<DateRangeDiv>
 				{dateRange.map((element) => (
-					<>
-						<RadioDiv>
-							<HiddenRadioButton
-								onClick={handleClick}
-								id={element}
-								name="date-range"
-								value={element}
-							/>
-							<RadioButton></RadioButton>
-							<RadioLabel for={element}>{element}</RadioLabel>
-						</RadioDiv>
-					</>
+					<RadioDiv key={element}>
+						<HiddenRadioButton
+							onClick={handleClick}
+							id={element}
+							name="date-range"
+							value={element}
+						/>
+						<RadioButton></RadioButton>
+						<RadioLabel for={element}>{element}</RadioLabel>
+					</RadioDiv>
 				))}
 			</DateRangeDiv>
 			<ConverterDiv>
