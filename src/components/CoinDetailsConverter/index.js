@@ -29,7 +29,7 @@ export default function CoinConverter(props) {
 					setCoin("");
 					break;
 				case false:
-					setCoin((value / props.amount).toFixed(3));
+					setCoin((value / props.amount).toFixed(2));
 					break;
 			}
 		} else {

@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleCurrency } from "store/currency/currencyActions";
 import NavBarSearch from "../NavBarSearch";
 import {
@@ -17,10 +17,12 @@ import {
 	StyledSearch,
 } from "./styles";
 
-const NavBar = (props) => {
+const NavBar = () => {
+	const dispatch = useDispatch();
+
 	const handleChange = (e) => {
 		const currency = e.target.value;
-		props.handleCurrency(currency.toLowerCase());
+		dispatch(handleCurrency(currency.toLowerCase()));
 	};
 
 	return (
@@ -54,12 +56,4 @@ const NavBar = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	currency: state.currency,
-});
-
-const mapDispatchToProps = {
-	handleCurrency,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;

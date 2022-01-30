@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getChartData } from "store/cryptoChart/chartActions";
 import {
 	Chart,
@@ -30,12 +30,15 @@ Chart.register(
 	Legend
 );
 
-const CryptoChart = (props) => {
-	useEffect(() => {
-		props.getChartData("bitcoin", "30");
-	}, [props.currency.currency]);
+const CryptoChart = () => {
+	const dispatch = useDispatch();
+	const currency = useSelector((state) => state.currency.currency);
 
-	const { dailyPrice, totalVolumes, dateLabels } = props.chart;
+	useEffect(() => {
+		dispatch(getChartData("bitcoin", "30"));
+	}, [currency]);
+
+	const { dailyPrice, totalVolumes, dateLabels } = useSelector((state) => state.chart);
 
 	const todayPrice = convertToMoney.format(dailyPrice.slice(-1));
 	const todayVolume = convertToMoney.format(totalVolumes.slice(-1));
@@ -86,13 +89,4 @@ const CryptoChart = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	chart: state.chart,
-	currency: state.currency,
-});
-
-const mapDispatchToProps = {
-	getChartData,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CryptoChart);
+export default CryptoChart;
