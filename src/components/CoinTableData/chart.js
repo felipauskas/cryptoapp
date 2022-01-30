@@ -33,6 +33,7 @@ export default function SparklineChart(props) {
 				data: props.data.slice(0, 7),
 				fill: true,
 				borderColor: "rgba(0, 255, 95, 0.56)",
+				backgroundColor: "transparent",
 				tension: 0.5,
 			},
 		],

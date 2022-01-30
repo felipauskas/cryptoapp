@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCoin } from "store/coinDetails/detailsActions";
 import { convertToMoney } from "utils";
 import * as dayjs from "dayjs";
@@ -32,8 +32,9 @@ import {
 import CoinConverter from "components/CoinDetailsConverter";
 
 const CoinDetailsData = (props) => {
-	const currency = props.currency.currency;
-	const { coinData, hasData } = props.coinDetails;
+	const dispatch = useDispatch();
+	const { currency } = useSelector((state) => state.currency);
+	const { coinData, hasData } = useSelector((state) => state.coinDetails);
 	const { image, name, market_data, links, description, symbol, id } = Object(coinData);
 	const {
 		current_price,
@@ -51,7 +52,7 @@ const CoinDetailsData = (props) => {
 	} = Object(market_data);
 
 	useEffect(() => {
-		props.getCoin(props.coin);
+		dispatch(getCoin(props.coin));
 	}, [props.coin, currency]);
 
 	return (
@@ -151,13 +152,4 @@ const CoinDetailsData = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	coinDetails: state.coinDetails,
-	currency: state.currency,
-});
-
-const mapDispatchToProps = {
-	getCoin,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CoinDetailsData);
+export default CoinDetailsData;

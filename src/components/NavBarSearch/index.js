@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getResultsData } from "store/searchBar/searchActions";
 import { CoinResult, ResultsDiv, SearchBar, StyledForm } from "./styles";
+import useOutsideClick from "./useOutsideClick";
 
-const NavBarSearch = (props) => {
+const NavBarSearch = () => {
+	const dispatch = useDispatch();
+	const search = useSelector((state) => state.search);
+
 	const [inputQuery, setInput] = useState("");
 	const [isResultsOpen, setResultsOpen] = useState(false);
+	const ref = useRef();
+
+	useOutsideClick(ref, () => {
+		if (isResultsOpen) setResultsOpen(false);
+	});
 
 	const handleChange = (e) => {
 		setInput(e.target.value);
@@ -14,7 +23,7 @@ const NavBarSearch = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.getResultsData(inputQuery);
+		dispatch(getResultsData(inputQuery));
 		setResultsOpen(true);
 	};
 
@@ -24,33 +33,18 @@ const NavBarSearch = (props) => {
 	};
 
 	return (
-		<>
-			<StyledForm onSubmit={handleSubmit}>
-				<SearchBar
-					onChange={handleChange}
-					value={inputQuery}
-					type="search"
-					placeholder="Search..."
-				/>
-				<ResultsDiv>
-					{isResultsOpen &&
-						props.search.coinData.map((element) => (
-							<CoinResult onClick={handleClick} to={`/coins/${element.id}`} key={element.id}>
-								{element.name}
-							</CoinResult>
-						))}
-				</ResultsDiv>
-			</StyledForm>
-		</>
+		<StyledForm onSubmit={handleSubmit}>
+			<SearchBar onChange={handleChange} value={inputQuery} type="search" placeholder="Search..." />
+			<ResultsDiv ref={ref}>
+				{isResultsOpen &&
+					search.coinData.map((element) => (
+						<CoinResult onClick={handleClick} to={`/coins/${element.id}`} key={element.id}>
+							{element.name}
+						</CoinResult>
+					))}
+			</ResultsDiv>
+		</StyledForm>
 	);
 };
 
-const mapStateToProps = (state) => ({
-	search: state.search,
-});
-
-const mapDispatchToProps = {
-	getResultsData,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarSearch);
+export default NavBarSearch;
