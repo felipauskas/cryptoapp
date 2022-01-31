@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
 	ConverterDiv,
 	ConverterSVG,
@@ -13,11 +14,24 @@ import {
 import CoinDetailsChart from "components/CoinDetailsChart";
 
 export default function CoinConverter(props) {
+	const queryString = require("query-string");
 	const [currencyValue, setCurrency] = useState("");
 	const [coinValue, setCoin] = useState("");
-	const [chartDateRange, setDateRange] = useState("30");
+	const { dateRange } = queryString.parse(window.location.search);
+	const [chartDateRange, setDateRange] = useState(dateRange == null ? "30" : dateRange);
+	const history = useHistory();
 
-	const dateRange = ["7d", "14d", "30d", "90d", "1y", "Max"];
+	// COMMENT FOR FUTURE WORK ON THIS PAGE:
+	// ONCE THE USER LOADS THE PAGE; QUERY STRING NEEDS TO BE LOADED ACCORDING TO THE DATA AVAILABLE.
+
+	const dateObject = {
+		"7d": 7,
+		"14d": 14,
+		"30d": 30,
+		"90d": 90,
+		"1y": 365,
+		Max: "max",
+	};
 
 	const handleChange = ({ target: { name, value } }) => {
 		if (name === "currency") {
@@ -48,38 +62,23 @@ export default function CoinConverter(props) {
 	};
 
 	const handleClick = (e) => {
-		switch (e.target.value) {
-			default:
-				break;
-			case "7d":
-				setDateRange("7");
-				break;
-			case "14d":
-				setDateRange("14");
-				break;
-			case "30d":
-				setDateRange("30");
-				break;
-			case "90d":
-				setDateRange("90");
-				break;
-			case "1y":
-				setDateRange("365");
-				break;
-			case "Max":
-				setDateRange("max");
-				break;
-		}
+		const value = dateObject[e.target.value];
+		setDateRange(value);
+		history.push({
+			pathname: window.location.pathname,
+			search: `?dateRange=${value}`,
+		});
 	};
 
 	return (
 		<>
 			<DateRangeDiv>
-				{dateRange.map((element) => (
+				{Object.keys(dateObject).map((element) => (
 					<RadioDiv key={element}>
 						<HiddenRadioButton
 							onClick={handleClick}
 							id={element}
+							defaultChecked={element === "30d" ? "checked" : ""}
 							name="date-range"
 							value={element}
 						/>
