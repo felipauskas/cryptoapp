@@ -21,7 +21,17 @@ export default function CoinConverter(props) {
 	const [chartDateRange, setDateRange] = useState(dateRange == null ? "30" : dateRange);
 	const history = useHistory();
 
-	const dateArray = ["7d", "14d", "30d", "90d", "1y", "Max"];
+	// COMMENT FOR FUTURE WORK ON THIS PAGE:
+	// ONCE THE USER LOADS THE PAGE; QUERY STRING NEEDS TO BE LOADED ACCORDING TO THE DATA AVAILABLE.
+
+	const dateObject = {
+		"7d": 7,
+		"14d": 14,
+		"30d": 30,
+		"90d": 90,
+		"1y": 365,
+		Max: "max",
+	};
 
 	const handleChange = ({ target: { name, value } }) => {
 		if (name === "currency") {
@@ -52,58 +62,18 @@ export default function CoinConverter(props) {
 	};
 
 	const handleClick = (e) => {
-		switch (e.target.value) {
-			default:
-				break;
-			case "7d":
-				setDateRange("7");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=7",
-				});
-				break;
-			case "14d":
-				setDateRange("14");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=14",
-				});
-				break;
-			case "30d":
-				setDateRange("30");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=30",
-				});
-				break;
-			case "90d":
-				setDateRange("90");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=90",
-				});
-				break;
-			case "1y":
-				setDateRange("365");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=365",
-				});
-				break;
-			case "Max":
-				setDateRange("max");
-				history.push({
-					pathname: window.location.pathname,
-					search: "?dateRange=max",
-				});
-				break;
-		}
+		const value = dateObject[e.target.value];
+		setDateRange(value);
+		history.push({
+			pathname: window.location.pathname,
+			search: `?dateRange=${value}`,
+		});
 	};
 
 	return (
 		<>
 			<DateRangeDiv>
-				{dateArray.map((element) => (
+				{Object.keys(dateObject).map((element) => (
 					<RadioDiv key={element}>
 						<HiddenRadioButton
 							onClick={handleClick}
