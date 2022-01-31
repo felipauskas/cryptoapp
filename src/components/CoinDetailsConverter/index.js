@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
 	ConverterDiv,
 	ConverterSVG,
@@ -13,11 +14,14 @@ import {
 import CoinDetailsChart from "components/CoinDetailsChart";
 
 export default function CoinConverter(props) {
+	const queryString = require("query-string");
 	const [currencyValue, setCurrency] = useState("");
 	const [coinValue, setCoin] = useState("");
-	const [chartDateRange, setDateRange] = useState("30");
+	const { dateRange } = queryString.parse(window.location.search);
+	const [chartDateRange, setDateRange] = useState(dateRange == null ? "30" : dateRange);
+	const history = useHistory();
 
-	const dateRange = ["7d", "14d", "30d", "90d", "1y", "Max"];
+	const dateArray = ["7d", "14d", "30d", "90d", "1y", "Max"];
 
 	const handleChange = ({ target: { name, value } }) => {
 		if (name === "currency") {
@@ -53,21 +57,45 @@ export default function CoinConverter(props) {
 				break;
 			case "7d":
 				setDateRange("7");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=7",
+				});
 				break;
 			case "14d":
 				setDateRange("14");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=14",
+				});
 				break;
 			case "30d":
 				setDateRange("30");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=30",
+				});
 				break;
 			case "90d":
 				setDateRange("90");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=90",
+				});
 				break;
 			case "1y":
 				setDateRange("365");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=365",
+				});
 				break;
 			case "Max":
 				setDateRange("max");
+				history.push({
+					pathname: window.location.pathname,
+					search: "?dateRange=max",
+				});
 				break;
 		}
 	};
@@ -75,11 +103,12 @@ export default function CoinConverter(props) {
 	return (
 		<>
 			<DateRangeDiv>
-				{dateRange.map((element) => (
+				{dateArray.map((element) => (
 					<RadioDiv key={element}>
 						<HiddenRadioButton
 							onClick={handleClick}
 							id={element}
+							defaultChecked={element === "30d" ? "checked" : ""}
 							name="date-range"
 							value={element}
 						/>
