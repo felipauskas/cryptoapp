@@ -4,6 +4,7 @@ export const TableDiv = styled.div`
 	display: flex;
 	flex-flow: column wrap;
 	width: 89%;
+	min-height: 200px;
 	background: #191b1f;
 	margin: 0px 0px 0 100px;
 	border-radius: 12px;

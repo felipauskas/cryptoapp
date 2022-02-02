@@ -3,6 +3,8 @@ const initialState = {
 	hasError: false,
 	hasData: false,
 	coinData: [],
+	hasMore: true,
+	orderBy: null,
 };
 
 export default function tableReducer(state = initialState, action) {
@@ -12,7 +14,7 @@ export default function tableReducer(state = initialState, action) {
 			return {
 				...state,
 				hasData: true,
-				coinData: action.payload,
+				coinData: state.coinData.concat(action.payload),
 				isLoading: false,
 				hasError: false,
 			};
@@ -29,6 +31,23 @@ export default function tableReducer(state = initialState, action) {
 				hasError: true,
 				hasData: false,
 				isLoading: false,
+			};
+		case "TABLE_FETCH_ALL_DATA_FULL":
+			return {
+				...state,
+				hasMore: false,
+			};
+		case "TABLE_ORDER_BY":
+			return {
+				...state,
+				orderBy: action.payload,
+			};
+		case "TABLE_EMPTY_DATA":
+			return {
+				...state,
+				hasData: false,
+				coinData: [],
+				orderBy: null,
 			};
 	}
 	return state;

@@ -69,12 +69,13 @@ export const CoinSlider = styled.div`
 	background: #ffffff;
 `;
 
-export const Completion = styled.div`
+export const Completion = styled.div.attrs((props) => ({
+	width: `${props.size}%` || "100%",
+}))`
 	height: 10px;
-	width: ${(props) => `${props.size}%` || "100%"};
 	border-radius: 5px;
-	background: #2172e5;
 	position: relative;
+	background: #2172e5;
 `;
 
 export const Volume = styled.span`

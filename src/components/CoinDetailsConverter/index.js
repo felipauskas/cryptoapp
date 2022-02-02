@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	ConverterDiv,
@@ -18,18 +18,29 @@ export default function CoinConverter(props) {
 	const [currencyValue, setCurrency] = useState("");
 	const [coinValue, setCoin] = useState("");
 	const { dateRange } = queryString.parse(window.location.search);
-	const [chartDateRange, setDateRange] = useState(dateRange == null ? "30" : dateRange);
+	const [chartDateRange, setDateRange] = useState(dateRange);
 	const history = useHistory();
 
-	// COMMENT FOR FUTURE WORK ON THIS PAGE:
-	// ONCE THE USER LOADS THE PAGE; QUERY STRING NEEDS TO BE LOADED ACCORDING TO THE DATA AVAILABLE.
+	useEffect(() => {
+		setDefaultDateRange();
+	}, [chartDateRange]);
+
+	const setDefaultDateRange = () => {
+		if (dateRange == null) {
+			history.push({
+				pathname: window.location.pathname,
+				search: `?dateRange=30`,
+			});
+			setDateRange(30);
+		}
+	};
 
 	const dateObject = {
-		"7d": 7,
-		"14d": 14,
-		"30d": 30,
-		"90d": 90,
-		"1y": 365,
+		"7d": "7",
+		"14d": "14",
+		"30d": "30",
+		"90d": "90",
+		"1y": "365",
 		Max: "max",
 	};
 
@@ -73,19 +84,20 @@ export default function CoinConverter(props) {
 	return (
 		<>
 			<DateRangeDiv>
-				{Object.keys(dateObject).map((element) => (
-					<RadioDiv key={element}>
-						<HiddenRadioButton
-							onClick={handleClick}
-							id={element}
-							defaultChecked={element === "30d" ? "checked" : ""}
-							name="date-range"
-							value={element}
-						/>
-						<RadioButton></RadioButton>
-						<RadioLabel for={element}>{element}</RadioLabel>
-					</RadioDiv>
-				))}
+				{dateRange &&
+					Object.keys(dateObject).map((element) => (
+						<RadioDiv key={element}>
+							<HiddenRadioButton
+								onClick={handleClick}
+								id={element}
+								defaultChecked={dateObject[element] === dateRange ? "checked" : ""}
+								name="date-range"
+								value={element}
+							/>
+							<RadioButton></RadioButton>
+							<RadioLabel for={element}>{element}</RadioLabel>
+						</RadioDiv>
+					))}
 			</DateRangeDiv>
 			<ConverterDiv>
 				<CurrencyDiv>

@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { orderTableData } from "store/tableData/tableActions";
 import {
 	Name,
 	Rank,
@@ -12,12 +14,18 @@ import {
 	TableName,
 } from "./styles";
 
-export default function CoinTableTitle(props) {
+const CoinTableTitle = () => {
+	const dispatch = useDispatch();
+
+	const handleClick = () => {
+		dispatch(orderTableData("price"));
+	};
+
 	return (
 		<TableName>
 			<Rank>#</Rank>
 			<Name>Name</Name>
-			<Price>Price</Price>
+			<Price onClick={handleClick}>Price</Price>
 			<Hour>1H%</Hour>
 			<Day>1D%</Day>
 			<Week>7D%</Week>
@@ -26,4 +34,6 @@ export default function CoinTableTitle(props) {
 			<Last7d>Last 7D</Last7d>
 		</TableName>
 	);
-}
+};
+
+export default CoinTableTitle;

@@ -6,12 +6,13 @@ import { CoinChart } from "./styles";
 
 const CoinDetailsChart = (props) => {
 	const dispatch = useDispatch();
-	const { currency } = useSelector((state) => state.currency);
 	const { dailyPrice, dateLabels } = useSelector((state) => state.chart);
 
 	useEffect(() => {
-		dispatch(getChartData(props.coin, props.dateRange));
-	}, [currency, props.coin, props.dateRange]);
+		if (props.dateRange) {
+			dispatch(getChartData(props.coin, props.dateRange));
+		}
+	}, [props.coin, props.dateRange]);
 
 	return (
 		<CoinChart>
