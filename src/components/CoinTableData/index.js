@@ -39,6 +39,7 @@ export default function CoinTableData(props) {
 		total_supply,
 		sparkline_in_7d,
 	} = props;
+
 	return (
 		<CoinDisplayDiv>
 			<Rank>{market_cap_rank}</Rank>
@@ -47,9 +48,9 @@ export default function CoinTableData(props) {
 				<Name to={`/coins/${id}`}>{name}</Name>
 			</ImgName>
 			<Price>{convertToMoney.format(current_price)}</Price>
-			<Hour isPositive={hourchange > 0}>{hourchange.toFixed(2)}%</Hour>
-			<Day isPositive={daychange > 0}>{daychange.toFixed(2)}%</Day>
-			<Week isPositive={weekchange > 0}>{weekchange.toFixed(2)}%</Week>
+			<Hour isPositive={hourchange > 0}>{hourchange ? `${hourchange.toFixed(2)}%` : "n/a"}</Hour>
+			<Day isPositive={daychange > 0}>{daychange ? `${daychange.toFixed(2)}%` : "n/a"}</Day>
+			<Week isPositive={weekchange > 0}>{weekchange ? `${weekchange.toFixed(2)}%` : "n/a"}</Week>
 			<VolumeMarket>
 				<Volume>{millify(total_volume)}</Volume>
 				<Market>{millify(market_cap)}</Market>
