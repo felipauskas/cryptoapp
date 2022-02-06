@@ -19,22 +19,8 @@ const CoinTableTitle = (props) => {
 	const { asc } = useSelector((state) => state.table.order);
 
 	const handleClick = (e) => {
-		switch (e.target.innerText) {
-			default:
-				break;
-			case "#":
-				dispatch(orderTableData({ by: "#", asc: !asc }));
-				break;
-			case "Price":
-				dispatch(orderTableData({ by: "price", asc: !asc }));
-				break;
-			case "1H%":
-				dispatch(orderTableData({ by: "hour", asc: !asc }));
-				break;
-			case "1D%":
-				dispatch(orderTableData({ by: "day", asc: !asc }));
-				break;
-		}
+		const value = e.target.innerText;
+		dispatch(orderTableData({ by: value, asc: !asc }));
 	};
 
 	return (

@@ -56,16 +56,9 @@ export default function AddAsset(props) {
 
 	const handleAmount = (e) => {
 		const amount = e.target.value;
-		switch (isNaN(amount)) {
-			default:
-				break;
-			case true:
-				setAmount("");
-				break;
-			case false:
-				setAmount(amount);
-				break;
-		}
+		const isNotNumber = isNaN(amount);
+		const nextValue = isNotNumber ? "" : amount;
+		setAmount(nextValue);
 	};
 
 	const handleDate = (e) => {

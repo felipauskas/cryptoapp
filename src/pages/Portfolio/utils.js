@@ -14,3 +14,11 @@ export const modalConfig = {
 		border: "transparent",
 	},
 };
+
+export const coinsPrice = (coinsArray) => {
+	let coinString = "";
+	coinsArray.map((el) => {
+		coinString = coinString += el.coinName + ",";
+	});
+	return coinString;
+};

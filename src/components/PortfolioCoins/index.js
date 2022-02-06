@@ -25,14 +25,15 @@ export default function PortfolioCoin(props) {
 	}, []);
 
 	const { currency } = useSelector((state) => state.currency);
+	const { currentPrice } = useSelector((state) => state.portfolio);
 	const { coinName, coinInformation } = props.coinData;
-	const { currencyPurchased, datePurchased, amountPurchased, purchasedData, actualData } =
-		coinInformation;
+	const { currencyPurchased, datePurchased, amountPurchased, purchasedData } = coinInformation;
+	const currentData = currentPrice?.filter((el) => el.id === coinName);
 
-	const actualPrice = actualData?.market_data?.current_price[currency];
-	const change24h = actualData?.market_data?.price_change_percentage_24h?.toFixed(2);
-	const change7d = actualData?.market_data?.price_change_percentage_7d?.toFixed(2);
-	const change30d = actualData?.market_data?.price_change_percentage_30d?.toFixed(2);
+	const actualPrice = currentData[0]?.current_price;
+	const change24h = currentData[0]?.price_change_percentage_24h?.toFixed(2);
+	const change7d = currentData[0]?.price_change_percentage_7d_in_currency?.toFixed(2);
+	const change30d = currentData[0]?.price_change_percentage_30d_in_currency?.toFixed(2);
 
 	const purchasedPrice = Object(purchasedData.market_data.current_price);
 	const coinAmount = amountPurchased / purchasedPrice[currencyPurchased];

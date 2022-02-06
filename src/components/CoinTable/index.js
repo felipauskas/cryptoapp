@@ -6,11 +6,12 @@ import { TableDiv } from "./styles";
 import CoinTableTitle from "../CoinTableTitle";
 import CoinTableData from "../CoinTableData";
 
-const CoinTable = (props) => {
+const CoinTable = () => {
 	const dispatch = useDispatch();
 	const { currency } = useSelector((state) => state.currency);
 	const { coinData, hasMore } = useSelector((state) => state.table);
-	const { by, asc } = useSelector((state) => state.table.order);
+	const { order } = useSelector((state) => state.table);
+	const { by, asc } = order;
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
@@ -37,54 +38,18 @@ const CoinTable = (props) => {
 
 	const showedList = [...coinData];
 
-	switch (asc) {
-		default:
-			break;
-		case true:
-			switch (by) {
-				default:
-					break;
-				case "#":
-					showedList.sort((a, b) => a.market_cap_rank - b.market_cap_rank);
-					break;
-				case "price":
-					showedList.sort((a, b) => a.current_price - b.current_price);
-					break;
-				case "hour":
-					showedList.sort(
-						(a, b) =>
-							a.price_change_percentage_1h_in_currency - b.price_change_percentage_1h_in_currency
-					);
-					break;
-				case "day":
-					showedList.sort(
-						(a, b) =>
-							a.price_change_percentage_24h_in_currency - b.price_change_percentage_24h_in_currency
-					);
-			}
-			break;
-		case false:
-			switch (by) {
-				default:
-					break;
-				case "#":
-					showedList.sort((a, b) => b.market_cap_rank - a.market_cap_rank);
-					break;
-				case "price":
-					showedList.sort((a, b) => b.current_price - a.current_price);
-					break;
-				case "hour":
-					showedList.sort(
-						(a, b) =>
-							b.price_change_percentage_1h_in_currency - a.price_change_percentage_1h_in_currency
-					);
-					break;
-				case "day":
-					showedList.sort(
-						(a, b) =>
-							b.price_change_percentage_24h_in_currency - a.price_change_percentage_24h_in_currency
-					);
-			}
+	const sortObject = {
+		"#": "market_cap_rank",
+		Price: "current_price",
+		"1H%": "price_change_percentage_1h_in_currency",
+		"1D%": "price_change_percentage_24h_in_currency",
+		"7D%": "price_change_percentage_7d_in_currency",
+	};
+
+	if (Object.keys(sortObject).includes(by) && asc) {
+		showedList.sort((a, b) => a[sortObject[by]] - b[sortObject[by]]);
+	} else if (Object.keys(sortObject).includes(by) && !asc) {
+		showedList.sort((a, b) => b[sortObject[by]] - a[sortObject[by]]);
 	}
 
 	return (

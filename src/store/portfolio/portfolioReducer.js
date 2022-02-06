@@ -1,5 +1,6 @@
 const initialState = {
 	coins: [],
+	currentPrice: [],
 };
 
 export default function portfolioCoins(state = initialState, action) {
@@ -10,13 +11,10 @@ export default function portfolioCoins(state = initialState, action) {
 				...state,
 				coins: [action.payload, ...state.coins],
 			};
-		case "UPDATE_COIN":
-			const index = state.coins.findIndex((element) => element.coinName === action.coinName);
-			const updatedArray = [...state.coins];
-			updatedArray[index].coinInformation.actualData = action.payload;
+		case "PORTFOLIO_FETCH_ALL_DATA_SUCCESS":
 			return {
 				...state,
-				coins: updatedArray,
+				currentPrice: action.payload,
 			};
 	}
 	return state;
