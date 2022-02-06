@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { orderTableData } from "store/tableData/tableActions";
 import {
 	Name,
@@ -14,21 +14,37 @@ import {
 	TableName,
 } from "./styles";
 
-const CoinTableTitle = () => {
+const CoinTableTitle = (props) => {
 	const dispatch = useDispatch();
+	const { asc } = useSelector((state) => state.table.order);
 
-	const handleClick = () => {
-		dispatch(orderTableData("price"));
+	const handleClick = (e) => {
+		switch (e.target.innerText) {
+			default:
+				break;
+			case "#":
+				dispatch(orderTableData({ by: "#", asc: !asc }));
+				break;
+			case "Price":
+				dispatch(orderTableData({ by: "price", asc: !asc }));
+				break;
+			case "1H%":
+				dispatch(orderTableData({ by: "hour", asc: !asc }));
+				break;
+			case "1D%":
+				dispatch(orderTableData({ by: "day", asc: !asc }));
+				break;
+		}
 	};
 
 	return (
 		<TableName>
-			<Rank>#</Rank>
+			<Rank onClick={handleClick}>#</Rank>
 			<Name>Name</Name>
 			<Price onClick={handleClick}>Price</Price>
-			<Hour>1H%</Hour>
-			<Day>1D%</Day>
-			<Week>7D%</Week>
+			<Hour onClick={handleClick}>1H%</Hour>
+			<Day onClick={handleClick}>1D%</Day>
+			<Week onClick={handleClick}>7D%</Week>
 			<VolumeMarket>24h Volume/Market Cap</VolumeMarket>
 			<CirculatingSupply>Circulating/Total Supply</CirculatingSupply>
 			<Last7d>Last 7D</Last7d>

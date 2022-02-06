@@ -19,3 +19,9 @@ export const getCoin = (coinName) => async (dispatch) => {
 		});
 	}
 };
+
+export const cleanGetCoin = () => (dispatch) => {
+	dispatch({
+		type: "COINDETAILS_CLEAN_ALL_DATA_SUCCESS",
+	});
+};

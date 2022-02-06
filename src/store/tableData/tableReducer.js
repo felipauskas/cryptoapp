@@ -4,7 +4,10 @@ const initialState = {
 	hasData: false,
 	coinData: [],
 	hasMore: true,
-	orderBy: null,
+	order: {
+		by: "id",
+		asc: true,
+	},
 };
 
 export default function tableReducer(state = initialState, action) {
@@ -40,7 +43,7 @@ export default function tableReducer(state = initialState, action) {
 		case "TABLE_ORDER_BY":
 			return {
 				...state,
-				orderBy: action.payload,
+				order: action.payload,
 			};
 		case "TABLE_EMPTY_DATA":
 			return {

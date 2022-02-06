@@ -34,10 +34,10 @@ export const getTableData = (results, page, currency) => async (dispatch) => {
 	}
 };
 
-export const orderTableData = (orderBy) => (dispatch) => {
+export const orderTableData = (order) => (dispatch) => {
 	dispatch({
 		type: "TABLE_ORDER_BY",
-		payload: orderBy,
+		payload: order,
 	});
 };
 

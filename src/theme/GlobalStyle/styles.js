@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
         background: #1F2128;
         color: #FAFBFB;
         margin: 0;
-        font-family: 'Poppins'
+        font-family: 'Poppins', sans-serif;
     }
 `;
 export const Wrapper = styled.div`
