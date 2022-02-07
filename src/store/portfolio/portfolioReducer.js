@@ -6,7 +6,7 @@ const initialState = {
 export default function portfolioCoins(state = initialState, action) {
 	// eslint-disable-next-line default-case
 	switch (action.type) {
-		case "ADD_COIN":
+		case "PORTFOLIO_FETCH_COIN_DATA_SUCCESS":
 			return {
 				...state,
 				coins: [action.payload, ...state.coins],

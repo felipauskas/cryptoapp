@@ -11,7 +11,7 @@ import { updateCoinPortfolio } from "store/portfolio/portfolioActions";
 
 export default function Portfolio(props) {
 	const dispatch = useDispatch();
-	const { coins, currentPrice } = useSelector((state) => state.portfolio);
+	const { coins } = useSelector((state) => state.portfolio);
 	const { hasData } = useSelector((state) => state.coinList);
 	const { currency } = useSelector((state) => state.currency);
 	const [showAddCoin, setAddCoin] = useState(false);
@@ -43,7 +43,10 @@ export default function Portfolio(props) {
 			</AddAssetBtn>
 			<PortfolioCoinsDiv>
 				<Statistics>Your Statistics</Statistics>
-				{coins && coins.map((el) => <PortfolioCoin key={el.coinName} coinData={el} />)}
+				{coins &&
+					coins.map((el) => (
+						<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
+					))}
 			</PortfolioCoinsDiv>
 		</PortfolioContainer>
 	);

@@ -20,15 +20,14 @@ import {
 export default function PortfolioCoin(props) {
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getCoin(coinName));
-	}, []);
-
 	const { currency } = useSelector((state) => state.currency);
 	const { currentPrice } = useSelector((state) => state.portfolio);
-	const { coinName, coinInformation } = props.coinData;
-	const { currencyPurchased, datePurchased, amountPurchased, purchasedData } = coinInformation;
-	const currentData = currentPrice?.filter((el) => el.id === coinName);
+	const { amountPurchased, currencyPurchased, datePurchased, purchasedData } = props.coinData;
+	const currentData = currentPrice.filter((el) => el.id === purchasedData.id);
+
+	useEffect(() => {
+		dispatch(getCoin(purchasedData.id));
+	}, []);
 
 	const actualPrice = currentData[0]?.current_price;
 	const change24h = currentData[0]?.price_change_percentage_24h?.toFixed(2);
@@ -72,7 +71,7 @@ export default function PortfolioCoin(props) {
 				<CoinDetails>
 					<DetailsWrapper>
 						<BoldDetails>Purchased price: </BoldDetails>
-						<LightDetails>{purchasedPrice[currency]}</LightDetails>
+						<LightDetails>{purchasedPrice[currency].toFixed(2)}</LightDetails>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Coin Amount:</BoldDetails>

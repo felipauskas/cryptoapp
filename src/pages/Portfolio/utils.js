@@ -18,7 +18,7 @@ export const modalConfig = {
 export const coinsPrice = (coinsArray) => {
 	let coinString = "";
 	coinsArray.map((el) => {
-		coinString = coinString += el.coinName + ",";
+		coinString = coinString += el.purchasedData.id + ",";
 	});
 	return coinString;
 };

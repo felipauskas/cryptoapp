@@ -1,10 +1,27 @@
 import axios from "axios";
 
-export const addCoinPortfolio = (coin) => (dispatch) => {
-	dispatch({
-		type: "ADD_COIN",
-		payload: coin,
-	});
+export const addCoinPortfolio = (coin, date, amount, currency) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "PORTFOLIO_FETCH_COIN_DATA_PENDING",
+		});
+		const { data } = await axios(
+			`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`
+		);
+		dispatch({
+			type: "PORTFOLIO_FETCH_COIN_DATA_SUCCESS",
+			payload: {
+				amountPurchased: amount,
+				currencyPurchased: currency,
+				datePurchased: date,
+				purchasedData: data,
+			},
+		});
+	} catch (error) {
+		dispatch({
+			type: "PORTFOLIO_FETCH_COIN_DATA_ERROR",
+		});
+	}
 };
 
 export const updateCoinPortfolio = (currency, coins) => async (dispatch) => {

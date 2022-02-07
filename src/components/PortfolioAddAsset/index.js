@@ -73,17 +73,7 @@ export default function AddAsset(props) {
 	};
 
 	const handleSave = () => {
-		const coinConfig = {
-			coinName: coinPurchased,
-			coinInformation: {
-				amountPurchased,
-				currencyPurchased: currency,
-				datePurchased,
-				purchasedData: coinData,
-				actualData: coinData,
-			},
-		};
-		dispatch(addCoinPortfolio(coinConfig));
+		dispatch(addCoinPortfolio(coinPurchased, datePurchased, amountPurchased, currency));
 		close();
 	};
 
@@ -116,7 +106,7 @@ export default function AddAsset(props) {
 						onChange={handleAmount}
 						value={amountPurchased}
 					></SelectAmount>
-					<SelectDate placeholder="DD/MM/YYYY" onChange={handleDate}></SelectDate>
+					<SelectDate placeholder="DD-MM-YYYY" onChange={handleDate}></SelectDate>
 				</SelectDiv>
 				<Buttons>
 					<CloseBtn onClick={close}>Close</CloseBtn>
