@@ -69,9 +69,8 @@ export const CoinSlider = styled.div`
 	background: #ffffff;
 `;
 
-export const Completion = styled.div.attrs((props) => ({
-	width: `${props.size}%` || "100%",
-}))`
+export const Completion = styled.div`
+	width: ${(props) => (props.size ? `${props.size}%` : "100%")};
 	height: 10px;
 	border-radius: 5px;
 	position: relative;

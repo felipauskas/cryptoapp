@@ -32,6 +32,10 @@ export default function detailsReducer(state = initialState, action) {
 				hasData: false,
 				isLoading: false,
 			};
+		case "COINDETAILS_CLEAN_ALL_DATA_SUCCESS":
+			return {
+				initialState,
+			};
 	}
 	return state;
 }

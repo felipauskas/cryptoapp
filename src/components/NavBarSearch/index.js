@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getResultsData } from "store/searchBar/searchActions";
 import { CoinResult, ResultsDiv, SearchBar, StyledForm } from "./styles";
-import useOutsideClick from "./useOutsideClick";
+import useOutsideClick from "../../utils/useOutsideClick";
 
 const NavBarSearch = () => {
 	const dispatch = useDispatch();

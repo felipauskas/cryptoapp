@@ -6,10 +6,12 @@ import { TableDiv } from "./styles";
 import CoinTableTitle from "../CoinTableTitle";
 import CoinTableData from "../CoinTableData";
 
-const CoinTable = (props) => {
+const CoinTable = () => {
 	const dispatch = useDispatch();
 	const { currency } = useSelector((state) => state.currency);
-	const { coinData, hasMore, orderBy } = useSelector((state) => state.table);
+	const { coinData, hasMore } = useSelector((state) => state.table);
+	const { order } = useSelector((state) => state.table);
+	const { by, asc } = order;
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
@@ -34,17 +36,28 @@ const CoinTable = (props) => {
 		setPage(page + 1);
 	};
 
-	// Leaving this comment just to point out that I've started working in the sort but haven't progress it yet.
-	let showedList = [...coinData];
+	const showedList = [...coinData];
 
-	if (orderBy === "price") {
-		showedList = showedList.sort((a, b) => (b.current_price > a.current_price ? 1 : -1));
+	const sortObject = {
+		"#": "market_cap_rank",
+		Price: "current_price",
+		"1H%": "price_change_percentage_1h_in_currency",
+		"1D%": "price_change_percentage_24h_in_currency",
+		"7D%": "price_change_percentage_7d_in_currency",
+	};
+
+	const sortType = sortObject[by];
+
+	if (sortType && asc) {
+		showedList.sort((a, b) => a[sortType] - b[sortType]);
+	} else if (sortType && !asc) {
+		showedList.sort((a, b) => b[sortType] - a[sortType]);
 	}
 
 	return (
 		<TableDiv>
-			<CoinTableTitle />
-			<InfiniteScroll dataLength={coinData.length} next={fetchMoreData} hasMore={hasMore}>
+			<CoinTableTitle currency={currency} />
+			<InfiniteScroll dataLength={showedList.length} next={fetchMoreData} hasMore={hasMore}>
 				{showedList.map((element) => (
 					<CoinTableData
 						key={element.id}

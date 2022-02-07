@@ -5,7 +5,9 @@ import chart from "./cryptoChart/chartReducer";
 import currency from "./currency/currencyReducer";
 import table from "./tableData/tableReducer";
 import search from "./searchBar/searchReducer";
+import coinList from "./coinList/coinListReducer";
 import coinDetails from "./coinDetails/detailsReducer";
+import portfolio from "./portfolio/portfolioReducer";
 
 const reducers = combineReducers({
 	market,
@@ -14,6 +16,8 @@ const reducers = combineReducers({
 	table,
 	search,
 	coinDetails,
+	coinList,
+	portfolio,
 });
 
 const composeEnhancers =
