@@ -46,10 +46,12 @@ const CoinTable = () => {
 		"7D%": "price_change_percentage_7d_in_currency",
 	};
 
-	if (Object.keys(sortObject).includes(by) && asc) {
-		showedList.sort((a, b) => a[sortObject[by]] - b[sortObject[by]]);
-	} else if (Object.keys(sortObject).includes(by) && !asc) {
-		showedList.sort((a, b) => b[sortObject[by]] - a[sortObject[by]]);
+	const sortType = sortObject[by];
+
+	if (sortType && asc) {
+		showedList.sort((a, b) => a[sortType] - b[sortType]);
+	} else if (sortType && !asc) {
+		showedList.sort((a, b) => b[sortType] - a[sortType]);
 	}
 
 	return (
