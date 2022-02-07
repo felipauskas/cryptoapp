@@ -1,5 +1,7 @@
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import market from "./marketBar/marketReducer";
 import chart from "./cryptoChart/chartReducer";
 import currency from "./currency/currencyReducer";
@@ -9,7 +11,19 @@ import coinList from "./coinList/coinListReducer";
 import coinDetails from "./coinDetails/detailsReducer";
 import portfolio from "./portfolio/portfolioReducer";
 
-const reducers = combineReducers({
+const persistConfig = {
+	key: "root",
+	storage,
+	whitelist: [],
+};
+
+const portfolioCoinsPersistConfig = {
+	key: "portfolio",
+	storage,
+	whitelist: ["coins"],
+};
+
+const rootReducer = combineReducers({
 	market,
 	chart,
 	currency,
@@ -17,8 +31,10 @@ const reducers = combineReducers({
 	search,
 	coinDetails,
 	coinList,
-	portfolio,
+	portfolio: persistReducer(portfolioCoinsPersistConfig, portfolio),
 });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers =
 	typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -27,4 +43,5 @@ const composeEnhancers =
 		  })
 		: compose;
 
-export default createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+export const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
+export const persistor = persistStore(store);

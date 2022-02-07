@@ -40,8 +40,6 @@ export default function CoinTableData(props) {
 		sparkline_in_7d,
 	} = props;
 
-	console.log((total_volume / market_cap) * 100);
-
 	return (
 		<CoinDisplayDiv>
 			<Rank>{market_cap_rank}</Rank>
