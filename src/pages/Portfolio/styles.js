@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const PortfolioContainer = styled.div`
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
+	width: 100%;
 `;
 
 export const AddAssetBtn = styled.div`
@@ -26,7 +27,7 @@ export const PortfolioCoinsDiv = styled.div`
 `;
 
 export const Statistics = styled.span`
-	margin: 50px 0 0 0;
+	margin: 25px 0 25px 0;
 	font-size: 18px;
 	width: 100%;
 	font-weight: 300;

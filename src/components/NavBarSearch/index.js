@@ -1,49 +1,58 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getResultsData } from "store/searchBar/searchActions";
-import { CoinResult, ResultsDiv, SearchBar, StyledForm } from "./styles";
-import useOutsideClick from "../../utils/useOutsideClick";
+import { useHistory } from "react-router-dom";
+import { StyledOption, StyledForm, StyledComplete } from "./styles";
+import { getCoinList } from "store/coinList/coinListActions";
 
 const NavBarSearch = () => {
 	const dispatch = useDispatch();
-	const search = useSelector((state) => state.search);
-
-	const [inputQuery, setInput] = useState("");
-	const [isResultsOpen, setResultsOpen] = useState(false);
+	const history = useHistory();
 	const ref = useRef();
+	const { hasData, coinList } = useSelector((state) => state.coinList);
+	const [coinSearch, setCoins] = useState([]);
+	const [inputValue, setInput] = useState("");
 
-	useOutsideClick(ref, () => {
-		if (isResultsOpen) setResultsOpen(false);
-	});
+	useEffect(() => (hasData ? "" : dispatch(getCoinList())), []);
 
-	const handleChange = (e) => {
-		setInput(e.target.value);
-		setResultsOpen(false);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		dispatch(getResultsData(inputQuery));
-		setResultsOpen(true);
-	};
-
-	const handleClick = (e) => {
+	const handleSubmit = (value, option) => {
+		console.log(option);
+		history.push(`/coins/${option.id}`);
+		ref.current.blur();
 		setInput("");
-		setResultsOpen(false);
+		setCoins([]);
+	};
+
+	const handleSearch = (value) => {
+		setInput(value);
+		if (value.length > 3) {
+			const filteredList = coinList.filter((coin) => coin.id.startsWith(value.toLowerCase()));
+			const shortList = filteredList.slice(0, 5);
+			setCoins(shortList);
+		} else {
+			setCoins([]);
+		}
 	};
 
 	return (
-		<StyledForm onSubmit={handleSubmit}>
-			<SearchBar onChange={handleChange} value={inputQuery} type="search" placeholder="Search..." />
-			<ResultsDiv ref={ref}>
-				{isResultsOpen &&
-					search.coinData.map((element) => (
-						<CoinResult onClick={handleClick} to={`/coins/${element.id}`} key={element.id}>
-							{element.name}
-						</CoinResult>
+		<>
+			<StyledForm>
+				<StyledComplete
+					style={{
+						width: "100%",
+					}}
+					onSearch={handleSearch}
+					onSelect={handleSubmit}
+					ref={ref}
+					value={inputValue}
+				>
+					{coinSearch.map((coin) => (
+						<StyledOption key={coin.id} value={coin.name} id={coin.id}>
+							{coin.name}
+						</StyledOption>
 					))}
-			</ResultsDiv>
-		</StyledForm>
+				</StyledComplete>
+			</StyledForm>
+		</>
 	);
 };
 

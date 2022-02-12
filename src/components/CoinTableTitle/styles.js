@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const TableName = styled.div`
 	display: flex;
 	flex-flow: row;
-	color: white;
-	margin: 20px 20px 0px 20px;
-	height: 50px;
 	align-items: center;
 	justify-content: space-around;
+	color: white;
+	width: 100%;
+	margin-top: 20px;
+	height: 50px;
 `;
 
 export const Rank = styled.span`

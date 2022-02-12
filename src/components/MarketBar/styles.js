@@ -16,19 +16,19 @@ export const MarketDiv = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	background: #1f2128;
 `;
 
 export const MarketDisplay = styled.div`
 	display: flex;
 	flex-flow: row;
-	width: 40%;
-	height: 50px;
 	align-items: center;
 	justify-content: space-around;
+	gap: 20px;
+	height: 50px;
 	background: #191b1f;
 	border-radius: 0 0 12px 12px;
 	padding: 0 2.5%;
+	max-width: 960px;
 `;
 
 export const SliderDiv = styled.div`

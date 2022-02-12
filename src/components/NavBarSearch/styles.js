@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { AutoComplete } from "antd";
+const { Option } = AutoComplete;
+
+export const StyledComplete = styled(AutoComplete)`
+	color: #fff;
+`;
 
 export const SearchBar = styled.input`
 	height: 100%;
@@ -14,26 +19,14 @@ export const SearchBar = styled.input`
 
 export const StyledForm = styled.form`
 	width: 100%;
-`;
+	font-size: 20px;
 
-export const ResultsDiv = styled.div`
-	color: #fff;
-	position: absolute;
-	width: 440px;
-	z-index: 1;
-	display: flex;
-	flex-flow: column;
-`;
-
-export const CoinResult = styled(Link)`
-	width: 100%;
-	background: #2c2f36;
-	margin: 0 0 0 1px;
-	text-decoration: none;
-	color: #fff;
-
-	&:hover {
-		background: #fff;
-		color: #2c2f36;
+	.ant-select-selector {
+		background-color: transparent !important;
+		font-size: 16px;
+		border: 0px !important;
+		box-shadow: none !important;
 	}
 `;
+
+export const StyledOption = styled(Option)``;

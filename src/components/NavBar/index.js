@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Menu, Button } from "antd";
+import "antd/dist/antd.css";
 import { handleCurrency } from "store/currency/currencyActions";
 import NavBarSearch from "../NavBarSearch";
 import {
 	ActionsDiv,
-	Option,
 	CurrencyDiv,
-	Dropdown,
 	NavDiv,
 	NavItems,
 	PagesDiv,
@@ -15,24 +15,42 @@ import {
 	Dollar,
 	StyledLink,
 	StyledSearch,
+	ArrowDown,
+	Option,
+	StyledDropdown,
 } from "./styles";
 
 const NavBar = () => {
 	const dispatch = useDispatch();
+	const [currency, setCurrency] = useState("usd");
 
-	const handleChange = (e) => {
-		const currency = e.target.value;
-		dispatch(handleCurrency(currency.toLowerCase()));
+	const handleClick = (e) => {
+		setCurrency(e.key);
+		dispatch(handleCurrency(e.key));
 	};
+
+	const menu = (
+		<Menu>
+			<Menu.Item key="usd" onClick={handleClick}>
+				USD
+			</Menu.Item>
+			<Menu.Item key="eur" onClick={handleClick}>
+				EUR
+			</Menu.Item>
+			<Menu.Item key="btc" onClick={handleClick}>
+				BTC
+			</Menu.Item>
+		</Menu>
+	);
 
 	return (
 		<NavDiv>
 			<NavItems>
 				<PagesDiv>
-					<StyledLink activeClassName="someClass" exact to="/">
+					<StyledLink activeClassName="currentPage" exact to="/">
 						Coins
 					</StyledLink>
-					<StyledLink activeClassName="someClass" exact to="/portfolio">
+					<StyledLink activeClassName="currentPage" exact to="/portfolio">
 						Portfolio
 					</StyledLink>
 				</PagesDiv>
@@ -43,11 +61,10 @@ const NavBar = () => {
 					</SearchDiv>
 					<CurrencyDiv>
 						<Dollar>$</Dollar>
-						<Dropdown onChange={handleChange}>
-							<Option>USD</Option>
-							<Option>BTC</Option>
-							<Option>EUR</Option>
-						</Dropdown>
+						<StyledDropdown overlay={menu} trigger={["click"]} placement="bottomLeft" arrow>
+							<Option>{currency.toUpperCase()}</Option>
+						</StyledDropdown>
+						<ArrowDown />
 					</CurrencyDiv>
 					<ThemeConverter></ThemeConverter>
 				</ActionsDiv>
