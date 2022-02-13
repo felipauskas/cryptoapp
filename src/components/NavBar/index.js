@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Menu, Button } from "antd";
-import "antd/dist/antd.css";
+import { Menu } from "antd";
 import { handleCurrency } from "store/currency/currencyActions";
 import NavBarSearch from "../NavBarSearch";
 import {
