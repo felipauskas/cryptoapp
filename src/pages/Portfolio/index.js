@@ -5,9 +5,10 @@ import ReactModal from "react-modal";
 import { getCoinList } from "store/coinList/coinListActions";
 import { cleanGetCoin } from "store/coinDetails/detailsActions";
 import PortfolioCoin from "components/PortfolioCoins";
-import { coinsPrice, modalConfig } from "./utils";
+import { coinsPrice, largeConfig, smallConfig } from "./utils";
 import { AddAssetBtn, PortfolioCoinsDiv, PortfolioContainer, Statistics } from "./styles";
 import { updateCoinPortfolio } from "store/portfolio/portfolioActions";
+import { useViewport } from "utils";
 
 export default function Portfolio(props) {
 	const dispatch = useDispatch();
@@ -16,12 +17,14 @@ export default function Portfolio(props) {
 	const { currency } = useSelector((state) => state.currency);
 	const [showAddCoin, setAddCoin] = useState(false);
 	const currentCoins = coinsPrice(coins);
+	const { width } = useViewport();
+	const breakpoint = 769;
 
 	useEffect(() => {
 		dispatch(updateCoinPortfolio(currency, currentCoins));
 	}, [currentCoins, currency]);
 
-	const handleClick = (e) => {
+	const handleClick = () => {
 		setAddCoin(true);
 		if (!hasData) {
 			dispatch(getCoinList());
@@ -35,7 +38,11 @@ export default function Portfolio(props) {
 
 	return (
 		<PortfolioContainer>
-			<ReactModal ariaHideApp={false} isOpen={showAddCoin} style={modalConfig}>
+			<ReactModal
+				ariaHideApp={false}
+				isOpen={showAddCoin}
+				style={width > breakpoint ? largeConfig : smallConfig}
+			>
 				<AddAsset close={handleClose} />
 			</ReactModal>
 			<AddAssetBtn onClick={handleClick}>

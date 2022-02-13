@@ -14,6 +14,12 @@ export const SelectContainer = styled.div`
 	background: #2c2f36;
 	align-items: center;
 	margin: 40px 0 0 0;
+
+	@media (max-width: 769px) {
+		margin: 0 0 0 0;
+		width: 90%;
+		height: 90%;
+	} ;
 `;
 
 export const SelectTitle = styled.span`
@@ -27,8 +33,11 @@ export const CoinDiv = styled.div`
 	flex-flow: row wrap;
 	justify-content: center;
 	width: 70%;
-	height: 80%;
 	gap: 2.5%;
+
+	@media (max-width: 769px) {
+		gap: 0;
+	} ;
 `;
 
 export const ImgCoinDiv = styled.div`
@@ -40,6 +49,13 @@ export const ImgCoinDiv = styled.div`
 	align-items: center;
 	width: 150px;
 	height: 200px;
+	margin-bottom: 40px;
+
+	@media (max-width: 769px) {
+		width: 150px;
+		height: 150px;
+		margin-bottom: 10px;
+	} ;
 `;
 
 export const ImageDiv = styled.div`
@@ -49,6 +65,11 @@ export const ImageDiv = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	@media (max-width: 769px) {
+		width: 85px;
+		height: 90px;
+	} ;
 `;
 
 export const CoinName = styled.span`
@@ -61,6 +82,13 @@ export const SelectDiv = styled.div`
 	width: 60%;
 	height: 200px;
 	justify-content: space-between;
+
+	@media (max-width: 769px) {
+		width: 80%;
+		height: auto;
+		justify-content: center;
+		gap: 5px;
+	} ;
 `;
 
 export const SelectCoin = styled.input`
@@ -78,7 +106,7 @@ export const SelectCoin = styled.input`
 
 export const StyledComplete = styled(AutoComplete)`
 	color: #fff;
-	width: 95%;
+	width: 100%;
 `;
 
 export const StyledOption = styled(Option)``;
@@ -113,7 +141,7 @@ export const SelectAmount = styled.input`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
 	background: #191b1f;
-	width: 95%;
+	width: 100%;
 	height: 50px;
 	border-radius: 12px;
 	outline: none;
@@ -126,7 +154,7 @@ export const StyledDate = styled(DatePicker)`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
 	background: #191b1f;
-	width: 95%;
+	width: 100%;
 	height: 50px;
 	border-radius: 12px;
 	outline: none;
@@ -145,11 +173,16 @@ export const StyledDate = styled(DatePicker)`
 
 export const Buttons = styled.div`
 	display: flex;
-	flex-flow: row;
+	flex-flow: row wrap;
 	width: 100%;
 	justify-content: center;
 	gap: 20px;
 	height: 40px;
+
+	@media (max-width: 769px) {
+		gap: 10px;
+		margin-top: 20px;
+	} ;
 `;
 
 export const CloseBtn = styled.div`
@@ -161,6 +194,10 @@ export const CloseBtn = styled.div`
 	width: 40%;
 	height: 40px;
 	color: #06d554;
+
+	@media (max-width: 769px) {
+		width: 80%;
+	} ;
 `;
 
 export const SaveBtn = styled.div`
@@ -171,4 +208,8 @@ export const SaveBtn = styled.div`
 	width: 40%;
 	height: 40px;
 	background: #06d554;
+
+	@media (max-width: 769px) {
+		width: 80%;
+	} ;
 `;

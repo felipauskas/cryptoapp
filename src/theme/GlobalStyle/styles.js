@@ -26,8 +26,8 @@ export const GlobalStyle = createGlobalStyle`
     .ant-select-dropdown {
         background: #1F2128 !important;
     }
-
 `;
+
 export const Wrapper = styled.div`
 	display: flex;
 	flex-flow: column;
