@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useOutsideClick from "../../utils/useOutsideClick";
+import { Space } from "antd";
 import { getCoin } from "store/coinDetails/detailsActions";
 import {
 	ImageDiv,
@@ -10,16 +10,17 @@ import {
 	SelectTitle,
 	SelectDiv,
 	SelectCoin,
+	StyledComplete,
+	StyledOption,
 	SelectAmount,
 	Buttons,
 	CloseBtn,
 	SaveBtn,
-	SelectDate,
-	CoinResultDiv,
-	CoinResult,
+	StyledDate,
 	CoinName,
 } from "./styles";
 import { addCoinPortfolio } from "store/portfolio/portfolioActions";
+import moment from "moment";
 
 export default function AddAsset(props) {
 	const { close } = props;
@@ -27,31 +28,30 @@ export default function AddAsset(props) {
 	const { coinData } = useSelector((state) => state.coinDetails);
 	const { currency } = useSelector((state) => state.currency);
 	const [filteredCoins, setFiltered] = useState([]);
-	const [isOpen, setOpen] = useState(false);
 	const [amountPurchased, setAmount] = useState([]);
+	const [inputValue, setInput] = useState("");
 	const [datePurchased, setDate] = useState([]);
 	const [coinPurchased, setCoin] = useState([]);
 	const placeholderVar = `Amount ${currency.toUpperCase()}`;
-	const ref = useRef();
 	const dispatch = useDispatch();
 	const { image, name } = Object(coinData);
+	const dateFormat = "DD-MM-YYYY";
+	const customDateFormat = (value) => `${value.format(dateFormat)}`;
 
-	useOutsideClick(ref, () => {
-		if (isOpen) setOpen(false);
-	});
-
-	const handleCoin = (e) => {
-		if (e.target.value.length > 3) {
-			setOpen(true);
-			const filteredList = coinList.filter((coin) =>
-				coin.id.startsWith(e.target.value.toLowerCase())
-			);
+	const handleSearch = (value) => {
+		setInput(value);
+		if (value.length > 3) {
+			const filteredList = coinList.filter((coin) => coin.id.startsWith(value.toLowerCase()));
 			const shortList = filteredList.slice(0, 5);
 			setFiltered(shortList);
 		} else {
-			setOpen(false);
+			setFiltered([]);
 		}
-		setCoin(e.target.value);
+	};
+
+	const handleSelect = (value, option) => {
+		setCoin(option.id);
+		dispatch(getCoin(option.id));
 	};
 
 	const handleAmount = (e) => {
@@ -61,21 +61,28 @@ export default function AddAsset(props) {
 		setAmount(nextValue);
 	};
 
-	const handleDate = (e) => {
-		const date = e.target.value;
-		setDate(date);
-	};
-
-	const handleClick = (e) => {
-		setCoin(e.target.id);
-		setOpen(false);
-		dispatch(getCoin(e.target.id));
+	const handleDate = (date, dateString) => {
+		setDate(dateString);
 	};
 
 	const handleSave = () => {
-		dispatch(addCoinPortfolio(coinPurchased, datePurchased, amountPurchased, currency));
-		close();
+		if (name) {
+			dispatch(addCoinPortfolio(coinPurchased, datePurchased, amountPurchased, currency));
+			close();
+		}
 	};
+
+	const disabledDate = (current) => {
+		const today = moment().format("DD-MM-YYYY");
+		const tomorrow = moment(today, "DD-MM-YYYY").add(1, "days");
+		return current && current > moment(tomorrow, "DD-MM-YYYY");
+	};
+
+	const coinResults = filteredCoins.map((coin) => (
+		<StyledOption key={coin.id} value={coin.name} id={coin.id}>
+			{coin.name}
+		</StyledOption>
+	));
 
 	return (
 		<SelectContainer>
@@ -92,21 +99,24 @@ export default function AddAsset(props) {
 					)}
 				</ImgCoinDiv>
 				<SelectDiv>
-					<SelectCoin placeholder="Search Coin" onChange={handleCoin} value={coinPurchased} />
-					<CoinResultDiv ref={ref}>
-						{isOpen &&
-							filteredCoins.map((coin) => (
-								<CoinResult onClick={handleClick} key={coin.name} id={coin.id}>
-									<span id={coin.id}>{coin.name}</span>
-								</CoinResult>
-							))}
-					</CoinResultDiv>
+					<StyledComplete onSearch={handleSearch} dataSource={coinResults} onSelect={handleSelect}>
+						<SelectCoin placeholder="Search Coin" value={inputValue} />
+					</StyledComplete>
 					<SelectAmount
 						placeholder={placeholderVar}
 						onChange={handleAmount}
 						value={amountPurchased}
 					></SelectAmount>
-					<SelectDate placeholder="DD-MM-YYYY" onChange={handleDate}></SelectDate>
+					<Space direction="vertical" size={50}>
+						<StyledDate
+							disabledDate={disabledDate}
+							format={customDateFormat}
+							placeholder="Select Date"
+							allowClear={false}
+							suffixIcon={null}
+							onChange={handleDate}
+						/>
+					</Space>
 				</SelectDiv>
 				<Buttons>
 					<CloseBtn onClick={close}>Close</CloseBtn>

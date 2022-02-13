@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { AutoComplete, DatePicker } from "antd";
+const { Option } = AutoComplete;
 
 export const SelectContainer = styled.div`
 	display: flex;
@@ -74,6 +76,13 @@ export const SelectCoin = styled.input`
 	color: white;
 `;
 
+export const StyledComplete = styled(AutoComplete)`
+	color: #fff;
+	width: 95%;
+`;
+
+export const StyledOption = styled(Option)``;
+
 export const CoinResultDiv = styled.div`
 	width: 42%;
 	top: 108px;
@@ -113,7 +122,7 @@ export const SelectAmount = styled.input`
 	padding: 0 0 0 5%;
 `;
 
-export const SelectDate = styled.input`
+export const StyledDate = styled(DatePicker)`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
 	background: #191b1f;
@@ -122,8 +131,16 @@ export const SelectDate = styled.input`
 	border-radius: 12px;
 	outline: none;
 	border: none;
-	color: white;
 	padding: 0 0 0 5%;
+	box-shadow: none !important;
+
+	.ant-picker-input > input::placeholder {
+		color: #757575;
+	}
+
+	.ant-picker-input > input {
+		color: #fff;
+	}
 `;
 
 export const Buttons = styled.div`

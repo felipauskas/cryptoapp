@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 export const CoinDisplayDiv = styled.div`
 	display: flex;
 	flex-flow: row;
-	color: white;
-	margin: 0px 20px 0px 20px;
-	border-bottom: 1px solid #707070;
-	height: 75px;
 	align-items: center;
 	justify-content: space-around;
+	color: white;
+	width: 100%;
+	border-bottom: 1px solid #707070;
+	height: 75px;
 `;
 
 export const Rank = styled.span`
@@ -32,6 +32,7 @@ export const Image = styled.img`
 export const Name = styled(Link)`
 	width: 150px;
 	margin: 0 0 0 5px;
+	font-size: 16px;
 	text-decoration: none;
 	color: #fff;
 `;
