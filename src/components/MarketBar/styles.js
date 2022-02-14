@@ -16,6 +16,10 @@ export const MarketDiv = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+
+	@media (max-width: 769px) {
+		background: #2c2d33;
+	} ;
 `;
 
 export const MarketDisplay = styled.div`
@@ -23,12 +27,19 @@ export const MarketDisplay = styled.div`
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-around;
+	width: 50%;
 	gap: 20px;
 	height: 50px;
 	background: #191b1f;
 	border-radius: 0 0 12px 12px;
 	padding: 0 2.5%;
-	max-width: 960px;
+
+	@media (max-width: 769px) {
+		width: 100%;
+		border-radius: 0;
+		background: #2c2d33;
+		gap: 10px;
+	} ;
 `;
 
 export const SliderDiv = styled.div`

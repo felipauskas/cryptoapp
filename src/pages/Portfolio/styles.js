@@ -18,6 +18,12 @@ export const AddAssetBtn = styled.div`
 	border-radius: 12px;
 	margin: 50px 0 0 0;
 	cursor: pointer;
+
+	@media (max-width: 769px) {
+		width: 90%;
+		margin: 20px 0px 0 0px;
+		height: 60px;
+	} ;
 `;
 
 export const PortfolioCoinsDiv = styled.div`

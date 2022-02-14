@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as ArrowDownSVG } from "./arrowdown.svg";
-import { Menu, Dropdown, Button } from "antd";
+import { ReactComponent as OverviewIcon } from "./Overview.svg";
+import { ReactComponent as PortfolioIcon } from "./Portfolio.svg";
+import { Dropdown } from "antd";
 
 export const StyledLink = styled(NavLink)`
 	display: flex;
@@ -27,7 +29,6 @@ export const NavDiv = styled.div`
 	flex-flow: row;
 	width: 100%;
 	background: #191b1f;
-	justify-content: center;
 `;
 
 export const NavItems = styled.div`
@@ -35,8 +36,11 @@ export const NavItems = styled.div`
 	justify-content: center;
 	margin: 20px 20px 20px 100px;
 	width: 100%;
-	min-width: 1024px;
 	max-width: 1920px;
+
+	@media (max-width: 769px) {
+		margin: 20px 0px 20px 0px;
+	} ;
 `;
 
 export const PagesDiv = styled.div`
@@ -46,12 +50,18 @@ export const PagesDiv = styled.div`
 
 export const ActionsDiv = styled.div`
 	display: flex;
-	width: 70%;
+	width: 100%;
 	justify-content: flex-end;
+	align-items: center;
+
+	@media (max-width: 769px) {
+		justify-content: space-between;
+	} ;
 `;
 
 export const StyledSearch = styled(Search)`
 	margin: 0 20px;
+	fill: #fff;
 `;
 
 export const SearchDiv = styled.div`
@@ -134,4 +144,43 @@ export const ThemeConverter = styled.div`
 	width: 57px;
 	height: 57px;
 	border-radius: 12px;
+`;
+
+export const Overview = styled.span`
+	font-size: 30px;
+	font-weight: 900;
+	margin-left: 20px;
+`;
+
+export const NavMobile = styled.div`
+	display: flex;
+	width: 100%;
+	background: rgba(44, 45, 51, 1);
+	z-index: 1;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 70px;
+	margin: 0px 0 0px 0;
+	justify-content: space-around;
+`;
+
+export const IconDiv = styled.div`
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	gap: 5px;
+	margin: 5px 0 0 0;
+`;
+
+export const IconTitle = styled.div`
+	font-size: 12px;
+`;
+
+export const OverviewSVG = styled(OverviewIcon)`
+	fill: ${(props) => (props.page === "/" ? "#00FC2A" : "#FFF")};
+`;
+
+export const PortfolioSVG = styled(PortfolioIcon)`
+	fill: ${(props) => (props.page === "/portfolio" ? "#00FC2A" : "#FFF")};
 `;
