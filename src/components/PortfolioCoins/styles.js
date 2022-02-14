@@ -7,6 +7,14 @@ export const CoinDiv = styled.div`
 	height: 300px;
 	gap: 2%;
 	margin-bottom: 20px;
+
+	@media (max-width: 769px) {
+		flex-flow: column;
+		align-items: center;
+		gap: 0;
+		padding-bottom: 50px;
+		height: 100%;
+	}
 `;
 
 export const ImgCoinDiv = styled.div`
@@ -18,6 +26,11 @@ export const ImgCoinDiv = styled.div`
 	align-items: center;
 	width: 15%;
 	height: 100%;
+
+	@media (max-width: 769px) {
+		width: 30%;
+		height: 40%;
+	}
 `;
 
 export const ImageDiv = styled.div`
@@ -27,6 +40,12 @@ export const ImageDiv = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	@media (max-width: 769px) {
+		width: 50%;
+		height: 50%;
+		background: transparent;
+	}
 `;
 
 export const CoinName = styled.span`
@@ -40,6 +59,12 @@ export const DetailsDiv = styled.div`
 	height: 100%;
 	gap: 1%;
 	justify-content: space-between;
+
+	@media (max-width: 769px) {
+		width: 100%;
+		gap: 0;
+		align-items: center;
+	}
 `;
 
 export const MarketPriceDiv = styled.div`
@@ -47,6 +72,7 @@ export const MarketPriceDiv = styled.div`
 	align-items: center;
 	height: 10%;
 	font-size: 14px;
+	align-self: flex-start;
 `;
 
 export const MarketDetails = styled.div`
@@ -59,6 +85,16 @@ export const MarketDetails = styled.div`
 	border-radius: 12px;
 	width: 100%;
 	height: 37%;
+
+	@media (max-width: 769px) {
+		width: 80%;
+		flex-flow: column;
+		align-items: center;
+		justify-content: center;
+		background: #2c2d33;
+		height: 100%;
+		gap: 0px;
+	}
 `;
 
 export const CoinPriceDiv = styled.div`
@@ -66,6 +102,7 @@ export const CoinPriceDiv = styled.div`
 	align-items: center;
 	height: 10%;
 	font-size: 14px;
+	align-self: flex-start;
 `;
 
 export const CoinDetails = styled.div`
@@ -78,12 +115,31 @@ export const CoinDetails = styled.div`
 	background: #191b1f;
 	border-radius: 12px;
 	height: 37%;
+
+	@media (max-width: 769px) {
+		width: 80%;
+		flex-flow: column;
+		align-items: center;
+		background: #2c2d33;
+		height: 100%;
+		gap: 0px;
+	}
 `;
 
 export const DetailsWrapper = styled.div`
 	display: flex;
 	flex-flow: row;
 	width: 22%;
+
+	@media (max-width: 769px) {
+		width: 100%;
+		height: 30px;
+		border-radius: 12px;
+		padding: 0 20px;
+		background: #2c2d33;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 export const BoldDetails = styled.span`

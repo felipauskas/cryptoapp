@@ -30,9 +30,12 @@ import {
 	GroupSVG,
 } from "./styles";
 import CoinConverter from "components/CoinDetailsConverter";
+import { useViewport } from "utils";
 
 const CoinDetailsData = (props) => {
 	const dispatch = useDispatch();
+	const { width } = useViewport();
+	const breakpoint = 769;
 	const { currency } = useSelector((state) => state.currency);
 	const { coinData, hasData } = useSelector((state) => state.coinDetails);
 	const { image, name, market_data, links, description, symbol, id } = Object(coinData);
@@ -118,34 +121,38 @@ const CoinDetailsData = (props) => {
 							</DetailsDiv>
 						</MarketDiv>
 					</Container>
-					<Description>Description</Description>
-					<DescriptionContainer>
-						<LayerSVG />
-						<CoinDescription dangerouslySetInnerHTML={{ __html: description.en }} />
-					</DescriptionContainer>
-					<SiteContainer>
-						<BoxDiv>
-							<LinkSVG />
-							<SiteName>{links.blockchain_site[0]}</SiteName>
-							<GroupSVG />
-						</BoxDiv>
-						<BoxDiv>
-							<LinkSVG />
-							<SiteName>{links.blockchain_site[1]}</SiteName>
-							<GroupSVG />
-						</BoxDiv>
-						<BoxDiv>
-							<LinkSVG />
-							<SiteName>{links.blockchain_site[2]}</SiteName>
-							<GroupSVG />
-						</BoxDiv>
-					</SiteContainer>
-					<CoinConverter
-						amount={current_price[currency]}
-						currency={currency}
-						coin={symbol}
-						name={id}
-					/>
+					{width > breakpoint && (
+						<>
+							<Description>Description</Description>
+							<DescriptionContainer>
+								<LayerSVG />
+								<CoinDescription dangerouslySetInnerHTML={{ __html: description.en }} />
+							</DescriptionContainer>
+							<SiteContainer>
+								<BoxDiv>
+									<LinkSVG />
+									<SiteName>{links.blockchain_site[0]}</SiteName>
+									<GroupSVG />
+								</BoxDiv>
+								<BoxDiv>
+									<LinkSVG />
+									<SiteName>{links.blockchain_site[1]}</SiteName>
+									<GroupSVG />
+								</BoxDiv>
+								<BoxDiv>
+									<LinkSVG />
+									<SiteName>{links.blockchain_site[2]}</SiteName>
+									<GroupSVG />
+								</BoxDiv>
+							</SiteContainer>
+							<CoinConverter
+								amount={current_price[currency]}
+								currency={currency}
+								coin={symbol}
+								name={id}
+							/>
+						</>
+					)}
 				</>
 			)}
 		</>

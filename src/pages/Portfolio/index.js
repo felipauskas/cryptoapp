@@ -2,6 +2,8 @@ import AddAsset from "components/PortfolioAddAsset";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { getCoinList } from "store/coinList/coinListActions";
 import { cleanGetCoin } from "store/coinDetails/detailsActions";
 import PortfolioCoin from "components/PortfolioCoins";
@@ -51,9 +53,17 @@ export default function Portfolio(props) {
 			<PortfolioCoinsDiv>
 				<Statistics>Your Statistics</Statistics>
 				{coins &&
+					width > breakpoint &&
 					coins.map((el) => (
 						<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
 					))}
+				{coins && width < breakpoint && (
+					<Carousel swipeScrollTolerance={20} showIndicators={false}>
+						{coins.map((el) => (
+							<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
+						))}
+					</Carousel>
+				)}
 			</PortfolioCoinsDiv>
 		</PortfolioContainer>
 	);
