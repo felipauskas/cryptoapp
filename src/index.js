@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "store";
 import "./index.css";
 import "antd/dist/antd.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 

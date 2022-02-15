@@ -15,6 +15,10 @@ export const CoinDisplayDiv = styled.div`
 export const Rank = styled.span`
 	width: 100px;
 	text-align: center;
+
+	@media (max-width: 769px) {
+		width: 50px;
+	}
 `;
 
 export const ImgName = styled.div`
@@ -22,11 +26,20 @@ export const ImgName = styled.div`
 	flex-flow: row;
 	align-items: center;
 	width: 300px;
+
+	@media (max-width: 769px) {
+		width: 150px;
+	}
 `;
 
 export const Image = styled.img`
 	width: 30px;
 	height: 30px;
+
+	@media (max-width: 769px) {
+		width: 20px;
+		height: 20px;
+	}
 `;
 
 export const Name = styled(Link)`
@@ -35,10 +48,18 @@ export const Name = styled(Link)`
 	font-size: 16px;
 	text-decoration: none;
 	color: #fff;
+
+	@media (max-width: 769px) {
+		width: 100px;
+	}
 `;
 
 export const Price = styled.span`
 	width: 150px;
+
+	@media (max-width: 769px) {
+		width: 100px;
+	}
 `;
 
 export const Hour = styled.span`

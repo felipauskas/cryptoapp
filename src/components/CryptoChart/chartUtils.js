@@ -1,11 +1,11 @@
 export const lineChartOptions = {
-	response: true,
+	responsive: true,
 	layout: {
 		padding: {
 			left: 10,
 			right: 20,
-			top: 20,
-			bottom: 20,
+			top: 10,
+			bottom: 10,
 		},
 	},
 	elements: {
@@ -39,6 +39,7 @@ export const lineChartOptions = {
 };
 
 export const barChartOptions = {
+	responsive: true,
 	layout: {
 		padding: 20,
 	},
