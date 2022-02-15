@@ -4,11 +4,10 @@ import { useHistory } from "react-router-dom";
 import { StyledOption, StyledForm, StyledComplete } from "./styles";
 import { getCoinList } from "store/coinList/coinListActions";
 
-const NavBarSearch = (props) => {
+const NavBarSearch = ({ close }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const ref = useRef();
-	const { close } = props;
 	const { hasData, coinList } = useSelector((state) => state.coinList);
 	const [coinSearch, setCoins] = useState([]);
 	const [inputValue, setInput] = useState("");
