@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { StyledOption, StyledForm, StyledComplete } from "./styles";
 import { getCoinList } from "store/coinList/coinListActions";
 
-const NavBarSearch = () => {
+const NavBarSearch = ({ close }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const ref = useRef();
@@ -15,11 +15,11 @@ const NavBarSearch = () => {
 	useEffect(() => (hasData ? "" : dispatch(getCoinList())), []);
 
 	const handleSubmit = (value, option) => {
-		console.log(option);
 		history.push(`/coins/${option.id}`);
 		ref.current.blur();
 		setInput("");
 		setCoins([]);
+		close();
 	};
 
 	const handleSearch = (value) => {

@@ -4,6 +4,7 @@ import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as ArrowDownSVG } from "./arrowdown.svg";
 import { ReactComponent as OverviewIcon } from "./Overview.svg";
 import { ReactComponent as PortfolioIcon } from "./Portfolio.svg";
+import { ReactComponent as CloseArrow } from "./close-arrow.svg";
 import { Dropdown } from "antd";
 
 export const StyledLink = styled(NavLink)`
@@ -72,7 +73,12 @@ export const SearchDiv = styled.div`
 	margin: 0 20px 0 0;
 	border-radius: 12px;
 	align-items: center;
+
+	@media (max-width: 769px) {
+		width: 100%;
+	} ;
 `;
+
 export const SearchBar = styled.input`
 	height: 100%;
 	width: 100%;
@@ -183,4 +189,38 @@ export const OverviewSVG = styled(OverviewIcon)`
 
 export const PortfolioSVG = styled(PortfolioIcon)`
 	fill: ${(props) => (props.page === "/portfolio" ? "#00FC2A" : "#FFF")};
+`;
+
+export const SearchSVG = styled(Search)`
+	fill: ${(props) => (props.page === "/search" ? "#00FC2A" : "#FFF")};
+`;
+
+export const CloseSVG = styled(CloseArrow)`
+	fill: #fff;
+	width: 15px;
+	height: auto;
+`;
+
+export const SearchContainer = styled.div`
+	display: flex;
+	flex-flow: column;
+	margin: 0 0 0 0;
+	width: 100%;
+	height: 90%;
+	background: rgba(23, 24, 33, 1);
+	padding: 5px 15px 0 15px;
+`;
+
+export const TitleDiv = styled.div`
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	width: 100%;
+	margin: 10px 0 10px 10px;
+`;
+
+export const CloseTitle = styled.span`
+	margin-left: 10px;
+	font-size: 30px;
+	font-weight: 900;
 `;

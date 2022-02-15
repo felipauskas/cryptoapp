@@ -11,6 +11,14 @@ export const Container = styled.div`
 	justify-content: space-around;
 	width: 70%;
 	gap: 2.5%;
+
+	@media (max-width: 769px) {
+		flex-flow: column;
+		align-items: center;
+		width: 100%;
+		gap: 10px;
+		margin-bottom: 100px;
+	} ;
 `;
 
 export const ImageContainer = styled.div`
@@ -20,6 +28,12 @@ export const ImageContainer = styled.div`
 	justify-content: space-between;
 	width: 40%;
 	height: 300px;
+
+	@media (max-width: 769px) {
+		height: auto;
+		width: 100%;
+		align-items: center;
+	} ;
 `;
 
 export const ImageDiv = styled.div`
@@ -32,6 +46,11 @@ export const ImageDiv = styled.div`
 	height: 230px;
 	background: #191b1f;
 	border-radius: 12px;
+
+	@media (max-width: 769px) {
+		height: 150px;
+		width: 40%;
+	} ;
 `;
 
 export const IconDiv = styled.div`
@@ -47,6 +66,10 @@ export const IconDiv = styled.div`
 export const CoinName = styled.span`
 	font-size: 24px;
 	text-align: center;
+
+	@media (max-width: 769px) {
+		font-size: 16px;
+	} ;
 `;
 
 export const SiteDiv = styled.div`
@@ -57,12 +80,21 @@ export const SiteDiv = styled.div`
 	border-radius: 12px;
 	align-items: center;
 	justify-content: center;
+
+	@media (max-width: 769px) {
+		height: 50px;
+		width: 90%;
+	} ;
 `;
 
 export const SiteName = styled.span`
 	font-size: 12px;
 	text-align: center;
 	flex-grow: 2;
+
+	@media (max-width: 769px) {
+		font-size: 16px;
+	} ;
 `;
 
 export const PriceDiv = styled.div`
@@ -73,18 +105,27 @@ export const PriceDiv = styled.div`
 	width: 70%;
 	background: #191b1f;
 	border-radius: 12px;
+
+	@media (max-width: 769px) {
+		width: 90%;
+	} ;
 `;
 
 export const Price = styled.span`
 	font-size: 40px;
+
+	@media (max-width: 769px) {
+		font-size: 30px;
+	} ;
 `;
 
 export const LayerSVG = styled(Layer)`
-	margin: 20px 0px;
+	margin: 20px 0 10px 0;
 `;
 
 export const AllTime = styled.span`
 	font-size: 14px;
+	margin-top: 10px;
 `;
 
 export const Date = styled.span`
@@ -108,15 +149,27 @@ export const DetailsDiv = styled.div`
 
 export const PlusSVG = styled(Plus)`
 	margin: 5px 20px;
+
+	@media (max-width: 769px) {
+		margin: 5px 5px;
+	} ;
 `;
 
 export const Title = styled.span`
 	font-weight: 900;
+
+	@media (max-width: 769px) {
+		font-size: 12px;
+	} ;
 `;
 
 export const Details = styled.span`
 	margin: 0 0 0 10px;
 	font-weight: 300;
+
+	@media (max-width: 769px) {
+		font-size: 12px;
+	} ;
 `;
 
 export const Description = styled.span`

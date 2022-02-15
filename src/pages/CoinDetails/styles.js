@@ -5,6 +5,10 @@ export const Container = styled.div`
 	width: 100%;
 	flex-flow: row wrap;
 	justify-content: center;
+
+	@media (max-width: 769px) {
+		flex-flow: column;
+	} ;
 `;
 
 export const Summary = styled.span`

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useRouteMatch, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Menu } from "antd";
 import { handleCurrency } from "store/currency/currencyActions";
 import NavBarSearch from "../NavBarSearch";
@@ -24,8 +24,15 @@ import {
 	PortfolioSVG,
 	IconTitle,
 	IconDiv,
+	SearchContainer,
+	TitleDiv,
+	CloseSVG,
+	CloseTitle,
+	SearchSVG,
 } from "./styles";
+import ReactModal from "react-modal";
 import { useViewport } from "utils";
+import { smallConfig } from "./utils";
 
 export default function NavBar() {
 	const dispatch = useDispatch();
@@ -34,13 +41,24 @@ export default function NavBar() {
 	const { width } = useViewport();
 	const breakpoint = 769;
 	const location = useLocation();
+	const [showSearch, setSearch] = useState(false);
 
 	const handleClick = (e) => {
 		setCurrency(e.key);
 		dispatch(handleCurrency(e.key));
 	};
 
-	const currentPage = location.pathname;
+	const handleSearch = () => {
+		setSearch(!showSearch);
+	};
+
+	const currentPage = () => {
+		if (showSearch) {
+			return "/search";
+		} else {
+			return location.pathname;
+		}
+	};
 
 	const menu = (
 		<Menu>
@@ -103,16 +121,28 @@ export default function NavBar() {
 						</NavItems>
 					</NavDiv>
 					<NavMobile>
+						<ReactModal ariaHideApp={false} isOpen={showSearch} style={smallConfig}>
+							<SearchContainer>
+								<TitleDiv onClick={handleSearch}>
+									<CloseSVG />
+									<CloseTitle>Close</CloseTitle>
+								</TitleDiv>
+								<SearchDiv>
+									<StyledSearch />
+									<NavBarSearch close={handleSearch} />
+								</SearchDiv>
+							</SearchContainer>
+						</ReactModal>
 						<IconDiv onClick={() => history.push(`/`)}>
-							<OverviewSVG page={currentPage} />
+							<OverviewSVG page={currentPage()} />
 							<IconTitle page={currentPage}>Overview</IconTitle>
 						</IconDiv>
 						<IconDiv onClick={() => history.push(`/portfolio`)}>
-							<PortfolioSVG page={currentPage} />
+							<PortfolioSVG page={currentPage()} />
 							<IconTitle>Portfolio</IconTitle>
 						</IconDiv>
-						<IconDiv>
-							<StyledSearch />
+						<IconDiv onClick={handleSearch}>
+							<SearchSVG page={currentPage()} />
 							<IconTitle>Search</IconTitle>
 						</IconDiv>
 					</NavMobile>
