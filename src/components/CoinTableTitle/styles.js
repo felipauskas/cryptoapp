@@ -9,19 +9,37 @@ export const TableName = styled.div`
 	width: 100%;
 	margin-top: 20px;
 	height: 50px;
+	font-weight: 900;
+
+	@media (max-width: 769px) {
+		/* overflow-x: scroll; */
+		width: auto;
+	}
 `;
 
 export const Rank = styled.span`
 	width: 100px;
 	text-align: center;
+
+	@media (max-width: 769px) {
+		width: 50px;
+	}
 `;
 
 export const Name = styled.span`
 	width: 300px;
+
+	@media (max-width: 769px) {
+		width: 150px;
+	}
 `;
 
 export const Price = styled.span`
 	width: 150px;
+
+	@media (max-width: 769px) {
+		width: 100px;
+	}
 `;
 
 export const Hour = styled.span`
