@@ -73,6 +73,10 @@ export const MarketPriceDiv = styled.div`
 	height: 10%;
 	font-size: 14px;
 	align-self: flex-start;
+
+	@media (max-width: 769px) {
+		margin: 15px 0 15px 0;
+	}
 `;
 
 export const MarketDetails = styled.div`
@@ -87,7 +91,7 @@ export const MarketDetails = styled.div`
 	height: 37%;
 
 	@media (max-width: 769px) {
-		width: 80%;
+		width: 95%;
 		flex-flow: column;
 		align-items: center;
 		justify-content: center;
@@ -103,6 +107,10 @@ export const CoinPriceDiv = styled.div`
 	height: 10%;
 	font-size: 14px;
 	align-self: flex-start;
+
+	@media (max-width: 769px) {
+		margin: 15px 0 15px 0;
+	}
 `;
 
 export const CoinDetails = styled.div`
@@ -117,7 +125,7 @@ export const CoinDetails = styled.div`
 	height: 37%;
 
 	@media (max-width: 769px) {
-		width: 80%;
+		width: 95%;
 		flex-flow: column;
 		align-items: center;
 		background: #2c2d33;
@@ -145,18 +153,35 @@ export const DetailsWrapper = styled.div`
 export const BoldDetails = styled.span`
 	font-weight: 900;
 	margin: 0 5px 0 0;
+
+	@media (max-width: 769px) {
+		font-size: 14px;
+	}
 `;
 
 export const LightDetails = styled.span`
 	font-weight: 300;
 	font-style: italic;
+	margin: 0 5px 0 0;
+
+	@media (max-width: 769px) {
+		font-size: 14px;
+	}
 `;
 
 export const CurrentPrice = styled.span`
 	font-weight: 300;
 `;
 
-export const PriceChange = styled.span``;
+export const PriceChange = styled.span`
+	font-weight: 300;
+	font-style: italic;
+	color: ${(props) => (props.isPositive ? "#00FC2A" : "#FE1040")};
+
+	@media (max-width: 769px) {
+		font-size: 14px;
+	}
+`;
 
 export const Amount = styled.span``;
 

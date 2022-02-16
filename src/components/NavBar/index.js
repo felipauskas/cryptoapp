@@ -3,7 +3,10 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { Menu } from "antd";
 import { handleCurrency } from "store/currency/currencyActions";
-import NavBarSearch from "../NavBarSearch";
+import { NavBarSearch } from "components";
+import ReactModal from "react-modal";
+import { useViewport } from "utils";
+import { smallConfig } from "./utils";
 import {
 	ActionsDiv,
 	CurrencyDiv,
@@ -30,9 +33,6 @@ import {
 	CloseTitle,
 	SearchSVG,
 } from "./styles";
-import ReactModal from "react-modal";
-import { useViewport } from "utils";
-import { smallConfig } from "./utils";
 
 export default function NavBar() {
 	const dispatch = useDispatch();

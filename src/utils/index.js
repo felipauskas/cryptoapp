@@ -1,6 +1,11 @@
 import React from "react";
 
-export const convertToMoney = new Intl.NumberFormat("us-EN", { minimumFractionDigits: 0 });
+export const currencyFormat = (currency, fraction, value) =>
+	new Intl.NumberFormat("us-EN", {
+		style: "currency",
+		maximumFractionDigits: fraction,
+		currency: currency.toUpperCase(),
+	}).format(value);
 
 export function dateParsed(date) {
 	const newDate = new Date(date);

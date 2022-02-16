@@ -1,15 +1,14 @@
-import AddAsset from "components/PortfolioAddAsset";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 import { Carousel } from "react-responsive-carousel";
 import { getCoinList } from "store/coinList/coinListActions";
 import { cleanGetCoin } from "store/coinDetails/detailsActions";
-import PortfolioCoin from "components/PortfolioCoins";
+import { AddAsset, PortfolioCoin } from "components";
 import { coinsPrice, largeConfig, smallConfig } from "./utils";
-import { AddAssetBtn, PortfolioCoinsDiv, PortfolioContainer, Statistics } from "./styles";
 import { updateCoinPortfolio } from "store/portfolio/portfolioActions";
 import { useViewport } from "utils";
+import { AddAssetBtn, PortfolioCoinsDiv, PortfolioContainer, Statistics } from "./styles";
 
 export default function Portfolio(props) {
 	const dispatch = useDispatch();
@@ -50,7 +49,7 @@ export default function Portfolio(props) {
 				<span>Add Asset</span>
 			</AddAssetBtn>
 			<PortfolioCoinsDiv>
-				<Statistics>Your Statistics</Statistics>
+				<Statistics>YOUR STATISTICS</Statistics>
 				{coins &&
 					width > breakpoint &&
 					coins.map((el) => (

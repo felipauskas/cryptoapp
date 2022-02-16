@@ -1,5 +1,7 @@
 import React from "react";
-import { convertToMoney } from "../../utils";
+import millify from "millify";
+import SparklineChart from "./chart";
+import { currencyFormat, useViewport } from "utils";
 import {
 	Name,
 	CoinSlider,
@@ -20,9 +22,6 @@ import {
 	Supply,
 	Completion,
 } from "./styles";
-import millify from "millify";
-import SparklineChart from "./chart";
-import { useViewport } from "utils";
 
 export default function CoinTableData(props) {
 	const {
@@ -39,6 +38,7 @@ export default function CoinTableData(props) {
 		circulating_supply,
 		total_supply,
 		sparkline_in_7d,
+		currency,
 	} = props;
 
 	const { width } = useViewport();
@@ -51,7 +51,7 @@ export default function CoinTableData(props) {
 				<Image src={image}></Image>
 				<Name to={`/coins/${id}`}>{name}</Name>
 			</ImgName>
-			<Price>{convertToMoney.format(current_price)}</Price>
+			<Price>{currencyFormat(currency, 2, current_price)}</Price>
 			<Hour isPositive={hourchange > 0}>{hourchange ? `${hourchange.toFixed(2)}%` : "n/a"}</Hour>
 			<Day isPositive={daychange > 0}>{daychange ? `${daychange.toFixed(2)}%` : "n/a"}</Day>
 			<Week isPositive={weekchange > 0}>{weekchange ? `${weekchange.toFixed(2)}%` : "n/a"}</Week>

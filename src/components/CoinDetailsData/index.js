@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCoin } from "store/coinDetails/detailsActions";
-import { convertToMoney } from "utils";
+import { currencyFormat, useViewport } from "utils";
+import { CoinConverter } from "components";
 import * as dayjs from "dayjs";
 import {
 	AllTime,
@@ -29,8 +30,6 @@ import {
 	LinkSVG,
 	GroupSVG,
 } from "./styles";
-import CoinConverter from "components/CoinDetailsConverter";
-import { useViewport } from "utils";
 
 const CoinDetailsData = (props) => {
 	const dispatch = useDispatch();
@@ -76,28 +75,28 @@ const CoinDetailsData = (props) => {
 							</SiteDiv>
 						</ImageContainer>
 						<PriceDiv>
-							<Price>${convertToMoney.format(current_price[currency])}</Price>
+							<Price>{currencyFormat(currency, 0, current_price[currency])}</Price>
 							<LayerSVG />
-							<AllTime>All Time High: ${convertToMoney.format(ath[currency])}</AllTime>
+							<AllTime>All Time High: {currencyFormat(currency, 0, ath[currency])}</AllTime>
 							<Date>{dayjs(ath_date[currency]).format("ddd, DD MMM YYYY hh:mm:ss Z")}</Date>
-							<AllTime>All Time Low: ${convertToMoney.format(atl[currency])}</AllTime>
+							<AllTime>All Time Low: {currencyFormat(currency, 0, atl[currency])}</AllTime>
 							<Date>{dayjs(atl_date[currency]).format("ddd, DD MMM YYYY hh:mm:ss Z")}</Date>
 						</PriceDiv>
 						<MarketDiv>
 							<DetailsDiv>
 								<PlusSVG />
 								<Title>Market Cap: </Title>
-								<Details>${convertToMoney.format(market_cap[currency])}</Details>
+								<Details>{currencyFormat(currency, 0, market_cap[currency])}</Details>
 							</DetailsDiv>
 							<DetailsDiv>
 								<PlusSVG />
 								<Title>Fully Diluted Valudation:</Title>
-								<Details>${convertToMoney.format(fully_diluted_valuation[currency])}</Details>
+								<Details>{currencyFormat(currency, 0, fully_diluted_valuation[currency])}</Details>
 							</DetailsDiv>
 							<DetailsDiv>
 								<PlusSVG />
 								<Title>Volume 24h:</Title>
-								<Details>${convertToMoney.format(market_cap_change_24h)}</Details>
+								<Details>{currencyFormat(currency, 0, market_cap_change_24h)}</Details>
 							</DetailsDiv>
 							<DetailsDiv>
 								<PlusSVG />

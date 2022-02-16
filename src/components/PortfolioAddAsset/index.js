@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 import { Space } from "antd";
 import { getCoin } from "store/coinDetails/detailsActions";
+import { addCoinPortfolio } from "store/portfolio/portfolioActions";
 import {
 	ImageDiv,
 	ImgCoinDiv,
@@ -19,18 +21,15 @@ import {
 	StyledDate,
 	CoinName,
 } from "./styles";
-import { addCoinPortfolio } from "store/portfolio/portfolioActions";
-import moment from "moment";
 
-export default function AddAsset(props) {
-	const { close } = props;
+export default function AddAsset({ close }) {
 	const { coinList } = useSelector((state) => state.coinList);
 	const { coinData } = useSelector((state) => state.coinDetails);
 	const { currency } = useSelector((state) => state.currency);
 	const [filteredCoins, setFiltered] = useState([]);
-	const [amountPurchased, setAmount] = useState([]);
+	const [amountPurchased, setAmount] = useState(null);
 	const [inputValue, setInput] = useState("");
-	const [datePurchased, setDate] = useState([]);
+	const [datePurchased, setDate] = useState(null);
 	const [coinPurchased, setCoin] = useState([]);
 	const placeholderVar = `Amount ${currency.toUpperCase()}`;
 	const dispatch = useDispatch();
@@ -66,7 +65,7 @@ export default function AddAsset(props) {
 	};
 
 	const handleSave = () => {
-		if (name) {
+		if (name && datePurchased && amountPurchased > 0) {
 			dispatch(addCoinPortfolio(coinPurchased, datePurchased, amountPurchased, currency));
 			close();
 		}

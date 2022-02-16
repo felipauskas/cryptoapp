@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Portfolio from "./pages/Portfolio";
-import Coins from "./pages/Coins";
-import CoinDetails from "./pages/CoinDetails";
+import { Portfolio, Coins, CoinDetails } from "pages";
 import { GlobalStyle, Wrapper } from "./theme/GlobalStyle/styles";
-import NavBar from "./components/NavBar";
-import MarketBar from "./components/MarketBar";
+import { NavBar, MarketBar } from "components";
 import { ViewportProvider } from "utils";
 
 export default function App() {
