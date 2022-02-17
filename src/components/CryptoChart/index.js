@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel";
-import { getChartData } from "store/cryptoChart/chartActions";
 import { currencyFormat, useViewport } from "utils";
+import { getChartData } from "store/cryptoChart/chartActions";
 import { lineChartOptions, barChartOptions } from "./chartUtils";
 import { CurrentDate, ChartDiv, DataLabel, DataValue } from "./styles";
 import {

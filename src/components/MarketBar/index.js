@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
-import { getMarketData } from "store/marketBar/marketActions";
 import { useViewport } from "utils";
+import { getMarketData } from "store/marketBar/marketActions";
 import {
 	Slider,
 	MarketDisplay,

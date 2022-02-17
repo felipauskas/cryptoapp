@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoin } from "store/coinDetails/detailsActions";
 import { currencyFormat, useViewport } from "utils";
 import { CoinConverter } from "components";
 import * as dayjs from "dayjs";
+import { getCoin } from "store/coinDetails/detailsActions";
 import {
 	AllTime,
 	CoinName,

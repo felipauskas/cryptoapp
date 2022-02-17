@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Portfolio, Coins, CoinDetails } from "pages";
-import { GlobalStyle, Wrapper } from "./theme/GlobalStyle/styles";
 import { NavBar, MarketBar } from "components";
 import { ViewportProvider } from "utils";
+import { GlobalStyle, Wrapper } from "./theme/GlobalStyle/styles";
 
 export default function App() {
 	const [currency, setCurrency] = useState("usd");

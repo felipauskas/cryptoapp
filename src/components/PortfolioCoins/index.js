@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoin } from "store/coinDetails/detailsActions";
 import { currencyFormat } from "utils";
+import { getCoin } from "store/coinDetails/detailsActions";
 import {
 	CoinDetails,
 	CoinDiv,

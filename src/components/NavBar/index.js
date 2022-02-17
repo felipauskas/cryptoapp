@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { Menu } from "antd";
-import { handleCurrency } from "store/currency/currencyActions";
 import { NavBarSearch } from "components";
 import ReactModal from "react-modal";
 import { useViewport } from "utils";
+import { handleCurrency } from "store/currency/currencyActions";
 import { smallConfig } from "./utils";
 import {
 	ActionsDiv,

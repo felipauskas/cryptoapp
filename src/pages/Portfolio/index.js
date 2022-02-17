@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
+import { AddAsset, PortfolioCoin } from "components";
+import { useViewport } from "utils";
 import { Carousel } from "react-responsive-carousel";
 import { getCoinList } from "store/coinList/coinListActions";
 import { cleanGetCoin } from "store/coinDetails/detailsActions";
-import { AddAsset, PortfolioCoin } from "components";
 import { coinsPrice, largeConfig, smallConfig } from "./utils";
 import { updateCoinPortfolio } from "store/portfolio/portfolioActions";
-import { useViewport } from "utils";
 import { AddAssetBtn, PortfolioCoinsDiv, PortfolioContainer, Statistics } from "./styles";
 
 export default function Portfolio(props) {

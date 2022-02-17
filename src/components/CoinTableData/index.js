@@ -1,7 +1,7 @@
 import React from "react";
 import millify from "millify";
-import SparklineChart from "./chart";
 import { currencyFormat, useViewport } from "utils";
+import SparklineChart from "./chart";
 import {
 	Name,
 	CoinSlider,
