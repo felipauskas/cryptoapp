@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { StyledOption, StyledForm, StyledComplete } from "./styles";
 import { getCoinList } from "store/coinList/coinListActions";
+import { StyledOption, StyledForm, StyledComplete } from "./styles";
 
 const NavBarSearch = ({ close }) => {
 	const dispatch = useDispatch();

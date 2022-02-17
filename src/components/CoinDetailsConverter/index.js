@@ -11,7 +11,7 @@ import {
 	HiddenRadioButton,
 	RadioLabel,
 } from "./styles";
-import CoinDetailsChart from "components/CoinDetailsChart";
+import { CoinDetailsChart } from "components";
 
 export default function CoinConverter(props) {
 	const queryString = require("query-string");

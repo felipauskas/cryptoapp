@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel";
+import { currencyFormat, useViewport } from "utils";
 import { getChartData } from "store/cryptoChart/chartActions";
+import { lineChartOptions, barChartOptions } from "./chartUtils";
+import { CurrentDate, ChartDiv, DataLabel, DataValue } from "./styles";
 import {
 	Chart,
 	CategoryScale,
@@ -15,10 +18,6 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { CurrentDate, ChartDiv, DataLabel, DataValue } from "./styles";
-import { convertToMoney } from "utils";
-import { lineChartOptions, barChartOptions } from "./chartUtils";
-import { useViewport } from "utils";
 
 Chart.register(
 	CategoryScale,
@@ -44,8 +43,8 @@ const CryptoChart = () => {
 
 	const { dailyPrice, totalVolumes, dateLabels } = useSelector((state) => state.chart);
 
-	const todayPrice = convertToMoney.format(dailyPrice.slice(-1));
-	const todayVolume = convertToMoney.format(totalVolumes.slice(-1));
+	const todayPrice = dailyPrice.slice(-1);
+	const todayVolume = totalVolumes.slice(-1);
 	const [weekday, month, day, year] = new Date().toString().split(" ");
 
 	const lineChartData = {
@@ -77,7 +76,7 @@ const CryptoChart = () => {
 				<>
 					<ChartDiv>
 						<DataLabel>BTC</DataLabel>
-						<DataValue>${todayPrice}</DataValue>
+						<DataValue>{currencyFormat(currency, 2, todayPrice)}</DataValue>
 						<CurrentDate>
 							{month} {day}, {year}
 						</CurrentDate>
@@ -85,7 +84,7 @@ const CryptoChart = () => {
 					</ChartDiv>
 					<ChartDiv>
 						<DataLabel>Volume 24</DataLabel>
-						<DataValue>${todayVolume}</DataValue>
+						<DataValue>{currencyFormat(currency, 0, todayVolume)}</DataValue>
 						<CurrentDate>
 							{month} {day}, {year}
 						</CurrentDate>
@@ -98,7 +97,7 @@ const CryptoChart = () => {
 					<Carousel swipeScrollTolerance={10} showIndicators={false}>
 						<ChartDiv>
 							<DataLabel>BTC</DataLabel>
-							<DataValue>${todayPrice}</DataValue>
+							<DataValue>{currencyFormat(currency, 2, todayPrice)}</DataValue>
 							<CurrentDate>
 								{month} {day}, {year}
 							</CurrentDate>
@@ -106,7 +105,7 @@ const CryptoChart = () => {
 						</ChartDiv>
 						<ChartDiv>
 							<DataLabel>Volume 24</DataLabel>
-							<DataValue>${todayVolume}</DataValue>
+							<DataValue>{currencyFormat(currency, 0, todayVolume)}</DataValue>
 							<CurrentDate>
 								{month} {day}, {year}
 							</CurrentDate>

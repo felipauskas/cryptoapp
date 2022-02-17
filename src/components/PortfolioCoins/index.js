@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { currencyFormat } from "utils";
 import { getCoin } from "store/coinDetails/detailsActions";
 import {
 	CoinDetails,
@@ -14,6 +15,7 @@ import {
 	BoldDetails,
 	DetailsWrapper,
 	LightDetails,
+	PriceChange,
 } from "./styles";
 
 export default function PortfolioCoin(props) {
@@ -32,10 +34,10 @@ export default function PortfolioCoin(props) {
 	const change24h = currentData[0]?.price_change_percentage_24h?.toFixed(2);
 	const change7d = currentData[0]?.price_change_percentage_7d_in_currency?.toFixed(2);
 	const change30d = currentData[0]?.price_change_percentage_30d_in_currency?.toFixed(2);
-
 	const purchasedPrice = Object(purchasedData.market_data.current_price);
 	const coinAmount = amountPurchased / purchasedPrice[currencyPurchased];
 	const totalValue = coinAmount * actualPrice;
+	const difference = (1 - purchasedPrice[currency] / actualPrice) * 100;
 	const { image, name } = Object(purchasedData);
 
 	return (
@@ -51,26 +53,27 @@ export default function PortfolioCoin(props) {
 				<MarketDetails>
 					<DetailsWrapper>
 						<BoldDetails>Current price: </BoldDetails>
-						<LightDetails>{actualPrice}</LightDetails>
+						<LightDetails>{currencyFormat(currency, 2, actualPrice)}</LightDetails>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Change 24h:</BoldDetails>
-						<LightDetails>{change24h}%</LightDetails>
+						<PriceChange isPositive={change24h > 0}>{change24h}%</PriceChange>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Change 7D: </BoldDetails>
-						<LightDetails>{change7d}%</LightDetails>
+						<PriceChange isPositive={change7d > 0}>{change7d}%</PriceChange>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Change 30D: </BoldDetails>
-						<LightDetails>{change30d}%</LightDetails>
+						<PriceChange isPositive={change30d > 0}>{change30d}%</PriceChange>
 					</DetailsWrapper>
 				</MarketDetails>
 				<CoinPriceDiv>YOUR COIN:</CoinPriceDiv>
 				<CoinDetails>
 					<DetailsWrapper>
 						<BoldDetails>Purchased price: </BoldDetails>
-						<LightDetails>{purchasedPrice[currency].toFixed(2)}</LightDetails>
+						<LightDetails>{currencyFormat(currency, 2, purchasedPrice[currency])}</LightDetails>
+						<PriceChange isPositive={difference > 0}>({difference.toFixed(2)}%)</PriceChange>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Coin Amount:</BoldDetails>
@@ -78,7 +81,7 @@ export default function PortfolioCoin(props) {
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Total Value: </BoldDetails>
-						<LightDetails>{totalValue.toFixed(2)}</LightDetails>
+						<LightDetails>{currencyFormat(currency, 2, totalValue)}</LightDetails>
 					</DetailsWrapper>
 					<DetailsWrapper>
 						<BoldDetails>Purchase Date:</BoldDetails>

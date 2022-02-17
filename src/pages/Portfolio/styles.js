@@ -37,4 +37,8 @@ export const Statistics = styled.span`
 	font-size: 18px;
 	width: 100%;
 	font-weight: 300;
+
+	@media (max-width: 769px) {
+		margin: 15px 0 15px 0;
+	}
 `;
