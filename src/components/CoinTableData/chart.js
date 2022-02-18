@@ -43,7 +43,7 @@ export default function SparklineChart(props) {
 }
 
 export const lineChartOptions = {
-	response: false,
+	responsive: true,
 	layout: {
 		padding: {
 			left: 0,

@@ -5,7 +5,7 @@ const initialState = {
 	coinData: [],
 	hasMore: true,
 	order: {
-		by: "id",
+		by: "ID",
 		asc: true,
 	},
 };
@@ -50,7 +50,6 @@ export default function tableReducer(state = initialState, action) {
 				...state,
 				hasData: false,
 				coinData: [],
-				orderBy: null,
 			};
 	}
 	return state;
