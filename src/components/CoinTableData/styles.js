@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 
 export const CoinDisplayDiv = styled.div`
 	display: flex;
+	width: 100%;
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-around;
 	color: white;
-	width: 100%;
 	border-bottom: 1px solid #707070;
 	height: 75px;
+
+	@media (max-width: 769px) {
+		/*  */
+	}
 `;
 
 export const Rank = styled.span`
@@ -129,5 +133,6 @@ export const Supply = styled.span`
 
 export const Last7d = styled.div`
 	width: 150px;
+	height: auto;
 	text-align: center;
 `;

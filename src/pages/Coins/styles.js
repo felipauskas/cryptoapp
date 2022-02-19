@@ -10,6 +10,7 @@ export const Container = styled.div`
 		flex-flow: column;
 		justify-content: flex-start;
 		width: 95%;
+		height: 800px;
 	}
 
 	.thumbs-wrapper.axis-vertical {

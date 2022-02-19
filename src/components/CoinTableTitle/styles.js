@@ -12,8 +12,8 @@ export const TableName = styled.div`
 	font-weight: 900;
 
 	@media (max-width: 769px) {
-		/* overflow-x: scroll; */
 		width: auto;
+		margin-top: 10px;
 	}
 `;
 
