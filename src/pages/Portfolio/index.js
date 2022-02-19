@@ -50,7 +50,12 @@ export default function Portfolio(props) {
 					width > breakpoint &&
 					coins.map((el) => <PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />)}
 				{coins && width < breakpoint && (
-					<Carousel swipeScrollTolerance={20} showIndicators={false} showThumbs={false}>
+					<Carousel
+						swipeScrollTolerance={50}
+						preventMovementUntilSwipeScrollTolerance={true}
+						showIndicators={false}
+						showThumbs={false}
+					>
 						{coins.map((el) => (
 							<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
 						))}

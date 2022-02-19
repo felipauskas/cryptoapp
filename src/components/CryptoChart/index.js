@@ -84,7 +84,12 @@ const CryptoChart = () => {
 			)}
 			{width < breakpoint && (
 				<>
-					<Carousel swipeScrollTolerance={10} showIndicators={false} showThumbs={false}>
+					<Carousel
+						swipeScrollTolerance={50}
+						preventMovementUntilSwipeScrollTolerance={true}
+						showIndicators={false}
+						showThumbs={false}
+					>
 						<ChartDiv>
 							<DataLabel>BTC</DataLabel>
 							<DataValue>{currencyFormat(currency, 2, todayPrice)}</DataValue>
