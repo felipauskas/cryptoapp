@@ -3,11 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useViewport } from "utils";
 import { orderTableData } from "store/tableData/tableActions";
-import { Name, Rank, Hour, Price, Day, Week, VolumeMarket, CirculatingSupply, Last7d, TableName } from "./styles";
+import {
+	Name,
+	Rank,
+	Hour,
+	Price,
+	Day,
+	Week,
+	VolumeMarket,
+	CirculatingSupply,
+	Last7d,
+	TableName,
+	ArrowSVG,
+} from "./styles";
 
-const CoinTableTitle = (props) => {
+const CoinTableTitle = () => {
 	const dispatch = useDispatch();
-	const { asc } = useSelector((state) => state.table.order);
+	const { asc, by } = useSelector((state) => state.table.order);
 	const queryString = require("query-string");
 	const history = useHistory();
 	const { width } = useViewport();
@@ -25,21 +37,41 @@ const CoinTableTitle = (props) => {
 
 	const handleClick = (e) => {
 		const value = e.target.innerText;
+		const direction = value === by ? !asc : asc;
+		if (value === by) {
+			dispatch(orderTableData({ by: value, asc: !asc }));
+		} else {
+			dispatch(orderTableData({ by: value, asc: asc }));
+		}
 		history.push({
 			pathname: window.location.pathname,
-			search: `?orderBy=${value}&ascending=${!asc}&results=${coinResults}`,
+			search: `?orderBy=${value}&ascending=${direction}&results=${coinResults}`,
 		});
-		dispatch(orderTableData({ by: value, asc: !asc }));
 	};
 
 	return (
 		<TableName>
-			<Rank onClick={handleClick}>ID</Rank>
-			<Name>Name</Name>
-			<Price onClick={handleClick}>Price</Price>
-			<Hour onClick={handleClick}>1H%</Hour>
-			<Day onClick={handleClick}>1D%</Day>
-			<Week onClick={handleClick}>7D%</Week>
+			<Rank onClick={handleClick} id="ID">
+				<span>ID</span>
+				<ArrowSVG direction={asc} orderBy={by} value="ID" />
+			</Rank>
+			<Name id="Name">Name</Name>
+			<Price onClick={handleClick}>
+				<span>Price</span>
+				<ArrowSVG direction={asc} orderBy={by} value="Price" />
+			</Price>
+			<Hour onClick={handleClick}>
+				<span>1H%</span>
+				<ArrowSVG direction={asc} orderBy={by} value="1H%" />
+			</Hour>
+			<Day onClick={handleClick}>
+				<span>1D%</span>
+				<ArrowSVG direction={asc} orderBy={by} value="1D%" />
+			</Day>
+			<Week onClick={handleClick}>
+				<span>7D%</span>
+				<ArrowSVG direction={asc} orderBy={by} value="7D%" />
+			</Week>
 			{width > breakpoint && (
 				<>
 					<VolumeMarket>24h Volume/Market Cap</VolumeMarket>

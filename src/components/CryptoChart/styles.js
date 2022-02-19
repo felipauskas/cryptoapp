@@ -16,12 +16,13 @@ export const ChartDiv = styled.div`
 `;
 
 export const DataLabel = styled.span`
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: 300;
 	margin: 20px 0 0 20px;
 
 	@media (max-width: 769px) {
 		margin: 10px 0 0 20px;
+		font-size: 14px;
 	}
 `;
 
@@ -36,11 +37,12 @@ export const DataValue = styled.span`
 `;
 
 export const CurrentDate = styled.span`
-	font-size: 14px;
+	font-size: 18px;
 	font-weight: 300;
 	margin: 0 0 20px 20px;
 
 	@media (max-width: 769px) {
 		margin: 0 0 0 20px;
+		font-size: 14px;
 	}
 `;

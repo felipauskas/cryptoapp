@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as ArrowDown } from "./arrow-down.svg";
 
 export const TableName = styled.div`
 	display: flex;
@@ -17,24 +18,35 @@ export const TableName = styled.div`
 	}
 `;
 
-export const Rank = styled.span`
+export const Rank = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100px;
-	text-align: center;
 
 	@media (max-width: 769px) {
-		width: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 75px;
 	}
 `;
 
-export const Name = styled.span`
+export const Name = styled.div`
+	display: flex;
+	align-items: center;
 	width: 300px;
 
 	@media (max-width: 769px) {
+		display: flex;
+		align-items: center;
 		width: 150px;
 	}
 `;
 
 export const Price = styled.span`
+	display: flex;
+	align-items: center;
 	width: 150px;
 
 	@media (max-width: 769px) {
@@ -43,13 +55,19 @@ export const Price = styled.span`
 `;
 
 export const Hour = styled.span`
+	display: flex;
+	align-items: center;
 	width: 100px;
 `;
 
 export const Day = styled.span`
+	display: flex;
+	align-items: center;
 	width: 100px;
 `;
 export const Week = styled.span`
+	display: flex;
+	align-items: center;
 	width: 100px;
 `;
 
@@ -64,4 +82,12 @@ export const CirculatingSupply = styled.div`
 export const Last7d = styled.div`
 	width: 150px;
 	text-align: center;
+`;
+
+export const ArrowSVG = styled(ArrowDown)`
+	width: 25px;
+	height: 25px;
+	transform: ${(props) => (props.direction ? "rotate(180deg)" : "")};
+	fill: ${(props) => (props.orderBy === props.value ? "#00FC2A" : "#FFF")};
+	pointer-events: none;
 `;

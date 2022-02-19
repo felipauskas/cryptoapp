@@ -27,9 +27,9 @@ export default function AddAsset({ close }) {
 	const { coinData } = useSelector((state) => state.coinDetails);
 	const { currency } = useSelector((state) => state.currency);
 	const [filteredCoins, setFiltered] = useState([]);
-	const [amountPurchased, setAmount] = useState(null);
+	const [amountPurchased, setAmount] = useState("");
 	const [inputValue, setInput] = useState("");
-	const [datePurchased, setDate] = useState(null);
+	const [datePurchased, setDate] = useState();
 	const [coinPurchased, setCoin] = useState([]);
 	const placeholderVar = `Amount ${currency.toUpperCase()}`;
 	const dispatch = useDispatch();
@@ -101,11 +101,7 @@ export default function AddAsset({ close }) {
 					<StyledComplete onSearch={handleSearch} dataSource={coinResults} onSelect={handleSelect}>
 						<SelectCoin placeholder="Search Coin" value={inputValue} />
 					</StyledComplete>
-					<SelectAmount
-						placeholder={placeholderVar}
-						onChange={handleAmount}
-						value={amountPurchased}
-					></SelectAmount>
+					<SelectAmount placeholder={placeholderVar} onChange={handleAmount} value={amountPurchased}></SelectAmount>
 					<Space direction="vertical" size={50}>
 						<StyledDate
 							disabledDate={disabledDate}

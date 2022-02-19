@@ -38,11 +38,7 @@ export default function Portfolio(props) {
 
 	return (
 		<PortfolioContainer>
-			<ReactModal
-				ariaHideApp={false}
-				isOpen={showAddCoin}
-				style={width > breakpoint ? largeConfig : smallConfig}
-			>
+			<ReactModal ariaHideApp={false} isOpen={showAddCoin} style={width > breakpoint ? largeConfig : smallConfig}>
 				<AddAsset close={handleClose} />
 			</ReactModal>
 			<AddAssetBtn onClick={handleClick}>
@@ -52,11 +48,9 @@ export default function Portfolio(props) {
 				<Statistics>YOUR STATISTICS</Statistics>
 				{coins &&
 					width > breakpoint &&
-					coins.map((el) => (
-						<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
-					))}
+					coins.map((el) => <PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />)}
 				{coins && width < breakpoint && (
-					<Carousel swipeScrollTolerance={20} showIndicators={false}>
+					<Carousel swipeScrollTolerance={20} showIndicators={false} showThumbs={false}>
 						{coins.map((el) => (
 							<PortfolioCoin key={el.purchasedData.market_data.current_price.usd} coinData={el} />
 						))}

@@ -6,6 +6,7 @@ export const PortfolioContainer = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
+	margin-bottom: 100px;
 `;
 
 export const AddAssetBtn = styled.div`
@@ -36,7 +37,7 @@ export const Statistics = styled.span`
 	margin: 25px 0 25px 0;
 	font-size: 18px;
 	width: 100%;
-	font-weight: 300;
+	font-weight: 500;
 
 	@media (max-width: 769px) {
 		margin: 15px 0 15px 0;

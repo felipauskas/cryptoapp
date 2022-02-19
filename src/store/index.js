@@ -23,10 +23,16 @@ const portfolioCoinsPersistConfig = {
 	whitelist: ["coins"],
 };
 
+const currencyPersistConfig = {
+	key: "currency",
+	storage,
+	whitelist: ["currency"],
+};
+
 const rootReducer = combineReducers({
 	market,
 	chart,
-	currency,
+	currency: persistReducer(currencyPersistConfig, currency),
 	table,
 	search,
 	coinDetails,

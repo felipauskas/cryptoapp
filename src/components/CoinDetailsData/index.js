@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyFormat, useViewport } from "utils";
 import { CoinConverter } from "components";
@@ -38,6 +38,7 @@ const CoinDetailsData = (props) => {
 	const { currency } = useSelector((state) => state.currency);
 	const { coinData, hasData } = useSelector((state) => state.coinDetails);
 	const { image, name, market_data, links, description, symbol, id } = Object(coinData);
+	const [isCopied, setCopy] = useState("");
 	const {
 		current_price,
 		ath,
@@ -52,16 +53,39 @@ const CoinDetailsData = (props) => {
 		market_cap_change_24h,
 		market_cap_change_percentage_24h,
 	} = Object(market_data);
+	const { blockchain_site } = Object(links);
 
 	useEffect(() => {
 		dispatch(getCoin(props.coin));
 	}, [props.coin, currency]);
 
+	const onCopy = (e) => {
+		setCopy(e.target.id);
+		copyToClipboard(e.target.id);
+		setTimeout(() => {
+			setCopy(false);
+		}, 2000);
+	};
+
+	const copyToClipboard = async (text) => {
+		if ("clipboard" in navigator) {
+			return await navigator.clipboard.writeText(text);
+		} else {
+			return document.execCommand("copy", true, text);
+		}
+	};
+
+	const openTab = (e) => {
+		const url = e.target.id;
+		window.open(url, "_blank");
+		// IT DOESN'T WORK IN SOME CASES.
+	};
+
 	return (
 		<>
 			{hasData && (
 				<>
-					<Description>Your Summary</Description>
+					<Description>YOUR SUMMARY</Description>
 					<Container>
 						<ImageContainer>
 							<ImageDiv>
@@ -122,34 +146,29 @@ const CoinDetailsData = (props) => {
 					</Container>
 					{width > breakpoint && (
 						<>
-							<Description>Description</Description>
+							<Description>DESCRIPTION</Description>
 							<DescriptionContainer>
 								<LayerSVG />
 								<CoinDescription dangerouslySetInnerHTML={{ __html: description.en }} />
 							</DescriptionContainer>
 							<SiteContainer>
 								<BoxDiv>
-									<LinkSVG />
-									<SiteName>{links.blockchain_site[0]}</SiteName>
-									<GroupSVG />
+									<LinkSVG onClick={openTab} id={blockchain_site[0]} />
+									<SiteName>{isCopied === blockchain_site[0] ? "Copied" : blockchain_site[0]}</SiteName>
+									<GroupSVG onClick={onCopy} id={blockchain_site[0]} current={isCopied} />
 								</BoxDiv>
 								<BoxDiv>
-									<LinkSVG />
-									<SiteName>{links.blockchain_site[1]}</SiteName>
-									<GroupSVG />
+									<LinkSVG onClick={openTab} id={blockchain_site[1]} />
+									<SiteName>{isCopied === blockchain_site[1] ? "Copied" : blockchain_site[1]}</SiteName>
+									<GroupSVG onClick={onCopy} id={blockchain_site[1]} current={isCopied} />
 								</BoxDiv>
 								<BoxDiv>
-									<LinkSVG />
-									<SiteName>{links.blockchain_site[2]}</SiteName>
-									<GroupSVG />
+									<LinkSVG onClick={openTab} id={blockchain_site[2]} />
+									<SiteName>{isCopied === blockchain_site[2] ? "Copied" : blockchain_site[2]}</SiteName>
+									<GroupSVG onClick={onCopy} id={blockchain_site[2]} current={isCopied} />
 								</BoxDiv>
 							</SiteContainer>
-							<CoinConverter
-								amount={current_price[currency]}
-								currency={currency}
-								coin={symbol}
-								name={id}
-							/>
+							<CoinConverter amount={current_price[currency]} currency={currency} coin={symbol} name={id} />
 						</>
 					)}
 				</>
