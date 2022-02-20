@@ -99,7 +99,7 @@ const CoinDetailsData = (props) => {
 							</SiteDiv>
 						</ImageContainer>
 						<PriceDiv>
-							<Price>{currencyFormat(currency, 0, current_price[currency])}</Price>
+							<Price>{currencyFormat(currency, 2, current_price[currency])}</Price>
 							<LayerSVG />
 							<AllTime>All Time High: {currencyFormat(currency, 0, ath[currency])}</AllTime>
 							<Date>{dayjs(ath_date[currency]).format("ddd, DD MMM YYYY hh:mm:ss Z")}</Date>

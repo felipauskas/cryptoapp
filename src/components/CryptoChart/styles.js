@@ -4,7 +4,7 @@ export const ChartDiv = styled.div`
 	display: flex;
 	flex-flow: column;
 	width: 48%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	margin-bottom: 40px;
 	border-radius: 12px;
 	align-items: flex-start;

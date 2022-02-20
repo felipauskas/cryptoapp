@@ -66,13 +66,13 @@ export const CurrencyDiv = styled.div`
 `;
 
 export const CurrencyInput = styled.input`
-	background: #2c2d33;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	border-radius: 0px 8px 8px 0px;
 	width: 260px;
 	height: 50px;
 	border: ${(props) => (props.isNaN ? "1px solid #FE1040" : "none")};
 	outline: none;
-	color: white;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	font-size: 16px;
 	padding: 0 0 0 20px;
 `;

@@ -6,7 +6,7 @@ export const TableName = styled.div`
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-around;
-	color: white;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	width: 100%;
 	margin-top: 20px;
 	height: 50px;
@@ -88,6 +88,6 @@ export const ArrowSVG = styled(ArrowDown)`
 	width: 25px;
 	height: 25px;
 	transform: ${(props) => (props.direction ? "rotate(180deg)" : "")};
-	fill: ${(props) => (props.orderBy === props.value ? "#00FC2A" : "#FFF")};
+	fill: ${(props) => (props.orderBy === props.value ? "#00FC2A" : props.theme.styles[props.theme.current].color)};
 	pointer-events: none;
 `;

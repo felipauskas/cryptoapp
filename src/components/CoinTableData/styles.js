@@ -7,7 +7,7 @@ export const CoinDisplayDiv = styled.div`
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-around;
-	color: white;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	border-bottom: 1px solid #707070;
 	height: 75px;
 
@@ -51,7 +51,7 @@ export const Name = styled(Link)`
 	margin: 0 0 0 5px;
 	font-size: 16px;
 	text-decoration: none;
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 
 	@media (max-width: 769px) {
 		width: 100px;
@@ -92,7 +92,7 @@ export const CoinSlider = styled.div`
 	height: 10px;
 	width: 100%;
 	border-radius: 5px;
-	background: #ffffff;
+	background: ${(props) => props.theme.styles[props.theme.current].color};
 `;
 
 export const Completion = styled.div.attrs((props) => ({

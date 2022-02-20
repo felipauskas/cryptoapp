@@ -20,7 +20,7 @@ export const CoinDiv = styled.div`
 export const ImgCoinDiv = styled.div`
 	display: flex;
 	flex-flow: column;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
@@ -34,7 +34,7 @@ export const ImgCoinDiv = styled.div`
 `;
 
 export const ImageDiv = styled.div`
-	background: #1f2128;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	width: 50%;
 	height: 40%;
 	display: flex;
@@ -85,7 +85,7 @@ export const MarketDetails = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 20px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	width: 100%;
 	height: 37%;
@@ -95,7 +95,7 @@ export const MarketDetails = styled.div`
 		flex-flow: column;
 		align-items: center;
 		justify-content: center;
-		background: #2c2d33;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 		height: 100%;
 		gap: 0px;
 	}
@@ -120,7 +120,7 @@ export const CoinDetails = styled.div`
 	justify-content: center;
 	gap: 20px;
 	width: 100%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	height: 37%;
 
@@ -128,7 +128,7 @@ export const CoinDetails = styled.div`
 		width: 95%;
 		flex-flow: column;
 		align-items: center;
-		background: #2c2d33;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 		height: 100%;
 		gap: 0px;
 	}
@@ -144,7 +144,7 @@ export const DetailsWrapper = styled.div`
 		height: 30px;
 		border-radius: 12px;
 		padding: 0 20px;
-		background: #2c2d33;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 		align-items: center;
 		justify-content: center;
 	}
