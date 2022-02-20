@@ -75,11 +75,11 @@ const CoinDetailsData = (props) => {
 		}
 	};
 
-	const openTab = (e) => {
-		const url = e.target.id;
-		window.open(url, "_blank");
-		// IT DOESN'T WORK IN SOME CASES.
-	};
+	// const openTab = (e) => {
+	// 	const url = e.target.id;
+	// 	window.open(url, "_blank");
+	// 	// IT DOESN'T WORK IN SOME CASES.
+	// };
 
 	return (
 		<>
@@ -153,17 +153,23 @@ const CoinDetailsData = (props) => {
 							</DescriptionContainer>
 							<SiteContainer>
 								<BoxDiv>
-									<LinkSVG onClick={openTab} id={blockchain_site[0]} />
+									<a href={blockchain_site[0]} target="_blank">
+										<LinkSVG />
+									</a>
 									<SiteName>{isCopied === blockchain_site[0] ? "Copied" : blockchain_site[0]}</SiteName>
 									<GroupSVG onClick={onCopy} id={blockchain_site[0]} current={isCopied} />
 								</BoxDiv>
 								<BoxDiv>
-									<LinkSVG onClick={openTab} id={blockchain_site[1]} />
+									<a href={blockchain_site[1]} target="_blank">
+										<LinkSVG />
+									</a>
 									<SiteName>{isCopied === blockchain_site[1] ? "Copied" : blockchain_site[1]}</SiteName>
 									<GroupSVG onClick={onCopy} id={blockchain_site[1]} current={isCopied} />
 								</BoxDiv>
 								<BoxDiv>
-									<LinkSVG onClick={openTab} id={blockchain_site[2]} />
+									<a href={blockchain_site[2]} target="_blank">
+										<LinkSVG />
+									</a>
 									<SiteName>{isCopied === blockchain_site[2] ? "Copied" : blockchain_site[2]}</SiteName>
 									<GroupSVG onClick={onCopy} id={blockchain_site[2]} current={isCopied} />
 								</BoxDiv>
