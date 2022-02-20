@@ -164,10 +164,8 @@ export const NavMobile = styled.div`
 	background: rgba(44, 45, 51, 1);
 	z-index: 1;
 	position: fixed;
-	left: 0;
 	bottom: 0;
 	height: 70px;
-	margin: 0px 0 0px 0;
 	justify-content: space-around;
 `;
 
@@ -204,7 +202,6 @@ export const CloseSVG = styled(CloseArrow)`
 export const SearchContainer = styled.div`
 	display: flex;
 	flex-flow: column;
-	margin: 0 0 0 0;
 	width: 100%;
 	height: 90%;
 	background: rgba(23, 24, 33, 1);

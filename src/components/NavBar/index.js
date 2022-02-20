@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { Menu } from "antd";
 import { NavBarSearch } from "components";
@@ -36,7 +36,7 @@ import {
 
 export default function NavBar() {
 	const dispatch = useDispatch();
-	const [currency, setCurrency] = useState("usd");
+	const { currency } = useSelector((state) => state.currency);
 	const history = useHistory();
 	const { width } = useViewport();
 	const breakpoint = 769;
@@ -44,7 +44,6 @@ export default function NavBar() {
 	const [showSearch, setSearch] = useState(false);
 
 	const handleClick = (e) => {
-		setCurrency(e.key);
 		dispatch(handleCurrency(e.key));
 	};
 
@@ -59,6 +58,8 @@ export default function NavBar() {
 			return location.pathname;
 		}
 	};
+
+	const overviewTitle = location.pathname === "/portfolio" ? "Portfolio" : "Overview";
 
 	const menu = (
 		<Menu>
@@ -109,7 +110,7 @@ export default function NavBar() {
 					<NavDiv>
 						<NavItems>
 							<ActionsDiv>
-								<Overview>Overview</Overview>
+								<Overview>{overviewTitle}</Overview>
 								<CurrencyDiv>
 									<Dollar>$</Dollar>
 									<StyledDropdown overlay={menu} trigger={["click"]} placement="bottomLeft" arrow>

@@ -33,6 +33,7 @@ export const ImageContainer = styled.div`
 		height: auto;
 		width: 100%;
 		align-items: center;
+		gap: 10px;
 	} ;
 `;
 
@@ -82,18 +83,18 @@ export const SiteDiv = styled.div`
 	justify-content: center;
 
 	@media (max-width: 769px) {
-		height: 50px;
+		height: 40px;
 		width: 90%;
 	} ;
 `;
 
 export const SiteName = styled.span`
-	font-size: 12px;
+	font-size: 16px;
 	text-align: center;
 	flex-grow: 2;
 
 	@media (max-width: 769px) {
-		font-size: 16px;
+		font-size: 14px;
 	} ;
 `;
 
@@ -108,6 +109,7 @@ export const PriceDiv = styled.div`
 
 	@media (max-width: 769px) {
 		width: 90%;
+		padding: 5px 0 5px 0;
 	} ;
 `;
 
@@ -115,12 +117,16 @@ export const Price = styled.span`
 	font-size: 40px;
 
 	@media (max-width: 769px) {
-		font-size: 30px;
+		font-size: 24px;
 	} ;
 `;
 
 export const LayerSVG = styled(Layer)`
 	margin: 20px 0 10px 0;
+
+	@media (max-width: 769px) {
+		margin: 10px 0 5px 0;
+	} ;
 `;
 
 export const AllTime = styled.span`
@@ -139,6 +145,10 @@ export const MarketDiv = styled.div`
 	width: 90%;
 	background: #191b1f;
 	border-radius: 12px;
+
+	@media (max-width: 769px) {
+		padding: 5px 0 5px 0;
+	} ;
 `;
 
 export const DetailsDiv = styled.div`
@@ -175,8 +185,13 @@ export const Details = styled.span`
 export const Description = styled.span`
 	font-size: 18px;
 	width: 70%;
-	font-weight: 300;
-	margin: 20px 0 20px 20px;
+	font-weight: 500;
+	margin: 20px 0 20px 0px;
+
+	@media (max-width: 769px) {
+		font-weight: 700;
+		margin-left: 10px;
+	} ;
 `;
 
 export const DescriptionContainer = styled.div`
@@ -215,10 +230,15 @@ export const BoxDiv = styled.div`
 
 export const LinkSVG = styled(Links)`
 	margin: 0 0 0 20px;
+	height: 20px;
+	width: 20px;
 `;
 
 export const GroupSVG = styled(Group)`
 	margin: 0 20px 0 0;
+	height: 20px;
+	width: 20px;
+	stroke: ${(props) => (props.id === props.current ? "#00FC2A" : "#FFF")};
 `;
 
 export const WavesSVG = styled(Waves)``;

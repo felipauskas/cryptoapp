@@ -21,7 +21,7 @@ export const Rank = styled.span`
 	text-align: center;
 
 	@media (max-width: 769px) {
-		width: 50px;
+		width: 75px;
 	}
 `;
 

@@ -21,10 +21,11 @@ export const Container = styled.div`
 export const Overview = styled.span`
 	font-size: 18px;
 	width: 100%;
-	font-weight: 300;
+	font-weight: 500;
 	margin: 20px 0px 20px 0;
 
 	@media (max-width: 769px) {
 		margin: 10px 0 10px 0;
+		font-size: 14px;
 	}
 `;

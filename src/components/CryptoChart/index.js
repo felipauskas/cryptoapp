@@ -19,17 +19,7 @@ import {
 	Legend,
 } from "chart.js";
 
-Chart.register(
-	CategoryScale,
-	LinearScale,
-	PointElement,
-	LineElement,
-	BarElement,
-	Filler,
-	Title,
-	Tooltip,
-	Legend
-);
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Filler, Title, Tooltip, Legend);
 
 const CryptoChart = () => {
 	const dispatch = useDispatch();
@@ -94,7 +84,12 @@ const CryptoChart = () => {
 			)}
 			{width < breakpoint && (
 				<>
-					<Carousel swipeScrollTolerance={10} showIndicators={false}>
+					<Carousel
+						swipeScrollTolerance={50}
+						preventMovementUntilSwipeScrollTolerance={true}
+						showIndicators={false}
+						showThumbs={false}
+					>
 						<ChartDiv>
 							<DataLabel>BTC</DataLabel>
 							<DataValue>{currencyFormat(currency, 2, todayPrice)}</DataValue>

@@ -6,9 +6,9 @@ export default class Coins extends Component {
 	render() {
 		return (
 			<Container>
-				<Overview>Your overview</Overview>
+				<Overview>BITCOIN OVERVIEW</Overview>
 				<CryptoChart currency={this.props.currency} />
-				<Overview>Your overview</Overview>
+				<Overview>MARKET OVERVIEW</Overview>
 				<CoinTable currency={this.props.currency} />
 			</Container>
 		);
