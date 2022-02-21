@@ -32,11 +32,14 @@ import {
 	CloseSVG,
 	CloseTitle,
 	SearchSVG,
+	ThemeSVG,
 } from "./styles";
+import { changeTheme } from "store/themeConverter/themeActions";
 
 export default function NavBar() {
 	const dispatch = useDispatch();
 	const { currency } = useSelector((state) => state.currency);
+	const { current } = useSelector((state) => state.theme);
 	const history = useHistory();
 	const { width } = useViewport();
 	const breakpoint = 769;
@@ -49,6 +52,11 @@ export default function NavBar() {
 
 	const handleSearch = () => {
 		setSearch(!showSearch);
+	};
+
+	const handleTheme = () => {
+		const currentTheme = current === "dark" ? "light" : "dark";
+		dispatch(changeTheme(currentTheme));
 	};
 
 	const currentPage = () => {
@@ -100,7 +108,9 @@ export default function NavBar() {
 								</StyledDropdown>
 								<ArrowDown />
 							</CurrencyDiv>
-							<ThemeConverter></ThemeConverter>
+							<ThemeConverter>
+								<ThemeSVG onClick={handleTheme} />
+							</ThemeConverter>
 						</ActionsDiv>
 					</NavItems>
 				</NavDiv>

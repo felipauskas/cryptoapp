@@ -45,7 +45,7 @@ export const ImageDiv = styled.div`
 	width: 100%;
 	gap: 10%;
 	height: 230px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 
 	@media (max-width: 769px) {
@@ -60,7 +60,7 @@ export const IconDiv = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #1f2128;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	border-radius: 12px;
 `;
 
@@ -77,7 +77,7 @@ export const SiteDiv = styled.div`
 	display: flex;
 	height: 50px;
 	width: 100%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	align-items: center;
 	justify-content: center;
@@ -104,7 +104,7 @@ export const PriceDiv = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 70%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 
 	@media (max-width: 769px) {
@@ -143,7 +143,7 @@ export const MarketDiv = styled.div`
 	flex-flow: column;
 	justify-content: center;
 	width: 90%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 
 	@media (max-width: 769px) {
@@ -196,7 +196,7 @@ export const Description = styled.span`
 
 export const DescriptionContainer = styled.div`
 	width: 70%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
@@ -224,7 +224,7 @@ export const BoxDiv = styled.div`
 	border-radius: 12px;
 	height: 64px;
 	width: 33%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	margin: 0 0 40px 0;
 `;
 
@@ -238,7 +238,7 @@ export const GroupSVG = styled(Group)`
 	margin: 0 20px 0 0;
 	height: 20px;
 	width: 20px;
-	stroke: ${(props) => (props.id === props.current ? "#00FC2A" : "#FFF")};
+	stroke: ${(props) => (props.id === props.current ? "#00FC2A" : props.theme.styles[props.theme.current].color)};
 `;
 
 export const WavesSVG = styled(Waves)``;

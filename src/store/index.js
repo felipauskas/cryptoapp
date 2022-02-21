@@ -10,6 +10,7 @@ import search from "./searchBar/searchReducer";
 import coinList from "./coinList/coinListReducer";
 import coinDetails from "./coinDetails/detailsReducer";
 import portfolio from "./portfolio/portfolioReducer";
+import theme from "./themeConverter/themeReducer";
 
 const persistConfig = {
 	key: "root",
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
 	coinDetails,
 	coinList,
 	portfolio: persistReducer(portfolioCoinsPersistConfig, portfolio),
+	theme,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

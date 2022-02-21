@@ -3,7 +3,7 @@ import { AutoComplete } from "antd";
 const { Option } = AutoComplete;
 
 export const StyledComplete = styled(AutoComplete)`
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 `;
 
 export const SearchBar = styled.input`
@@ -12,7 +12,7 @@ export const SearchBar = styled.input`
 	background: transparent;
 	border: none;
 	font-size: 16px;
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	outline: none;
 	border-radius: 12px;
 `;

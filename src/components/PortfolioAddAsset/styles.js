@@ -11,7 +11,7 @@ export const SelectContainer = styled.div`
 	border-radius: 12px;
 	left: 50%;
 	transform: translateX(-50%);
-	background: #2c2f36;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	align-items: center;
 	margin: 40px 0 0 0;
 
@@ -43,7 +43,7 @@ export const CoinDiv = styled.div`
 export const ImgCoinDiv = styled.div`
 	display: flex;
 	flex-flow: column;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
@@ -59,7 +59,7 @@ export const ImgCoinDiv = styled.div`
 `;
 
 export const ImageDiv = styled.div`
-	background: #1f2128;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	width: 85px;
 	height: 90px;
 	display: flex;
@@ -94,18 +94,18 @@ export const SelectDiv = styled.div`
 export const SelectCoin = styled.input`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	width: 95%;
 	min-height: 50px;
 	border-radius: 12px;
 	outline: none;
 	border: none;
 	padding: 0 0 0 5%;
-	color: white;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 `;
 
 export const StyledComplete = styled(AutoComplete)`
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	width: 100%;
 `;
 
@@ -114,7 +114,7 @@ export const StyledOption = styled(Option)``;
 export const CoinResultDiv = styled.div`
 	width: 42%;
 	top: 108px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 0px 0px 12px 12px;
 	position: absolute;
 	z-index: 1;
@@ -129,18 +129,18 @@ export const CoinResult = styled.div`
 	display: flex;
 	align-items: center;
 	text-decoration: none;
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 
 	&:hover {
-		background: #fff;
-		color: #191b1f;
+		background: ${(props) => props.theme.styles[props.theme.current].color};
+		color: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	}
 `;
 
 export const SelectAmount = styled.input`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	width: 100%;
 	height: 50px;
 	border-radius: 12px;
@@ -153,7 +153,7 @@ export const SelectAmount = styled.input`
 export const StyledDate = styled(DatePicker)`
 	font-family: "Poppins", sans-serif;
 	font-size: 14px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	width: 100%;
 	height: 50px;
 	border-radius: 12px;
@@ -167,7 +167,7 @@ export const StyledDate = styled(DatePicker)`
 	}
 
 	.ant-picker-input > input {
-		color: #fff;
+		color: ${(props) => props.theme.styles[props.theme.current].color};
 	}
 `;
 

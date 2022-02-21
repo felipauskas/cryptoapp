@@ -18,7 +18,7 @@ export const MarketDiv = styled.div`
 	width: 100%;
 
 	@media (max-width: 769px) {
-		background: #2c2d33;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	} ;
 `;
 
@@ -30,14 +30,14 @@ export const MarketDisplay = styled.div`
 	width: 50%;
 	gap: 20px;
 	height: 50px;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	border-radius: 0 0 12px 12px;
 	padding: 0 2.5%;
 
 	@media (max-width: 769px) {
 		width: 100%;
 		border-radius: 0;
-		background: #2c2d33;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 		gap: 10px;
 	} ;
 `;
@@ -52,7 +52,7 @@ export const Slider = styled.div`
 	height: 10px;
 	width: 55px;
 	border-radius: 5px;
-	background: #ffffff;
+	background: ${(props) => props.theme.styles[props.theme.current].color};
 	margin: 0 0 0 10px;
 `;
 

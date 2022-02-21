@@ -5,6 +5,7 @@ import { ReactComponent as ArrowDownSVG } from "./arrowdown.svg";
 import { ReactComponent as OverviewIcon } from "./Overview.svg";
 import { ReactComponent as PortfolioIcon } from "./Portfolio.svg";
 import { ReactComponent as CloseArrow } from "./close-arrow.svg";
+import { ReactComponent as Converter } from "./theme-converter.svg";
 import { Dropdown } from "antd";
 
 export const StyledLink = styled(NavLink)`
@@ -16,12 +17,12 @@ export const StyledLink = styled(NavLink)`
 	height: 57px;
 	background: transparent;
 	border-radius: 12px;
-	color: #ffffff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	text-decoration: none;
 	font-size: 18px;
 
 	&.currentPage {
-		background: #2c2f36;
+		background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	}
 `;
 
@@ -29,7 +30,7 @@ export const NavDiv = styled.div`
 	display: flex;
 	flex-flow: row;
 	width: 100%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 `;
 
 export const NavItems = styled.div`
@@ -62,12 +63,12 @@ export const ActionsDiv = styled.div`
 
 export const StyledSearch = styled(Search)`
 	margin: 0 20px;
-	fill: #fff;
+	fill: ${(props) => props.theme.styles[props.theme.current].color};
 `;
 
 export const SearchDiv = styled.div`
 	display: flex;
-	background: #2c2f36;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	width: 40%;
 	height: 57px;
 	margin: 0 20px 0 0;
@@ -85,14 +86,14 @@ export const SearchBar = styled.input`
 	background: transparent;
 	border: none;
 	font-size: 16px;
-	color: #fff;
+	color: ${(props) => props.theme.styles[props.theme.current].color};
 	outline: none;
 	border-radius: 12px;
 `;
 
 export const CurrencyDiv = styled.div`
 	display: flex;
-	background: #2c2f36;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	width: 100px;
 	height: 57px;
 	margin: 0 20px 0 0;
@@ -108,7 +109,7 @@ export const Dollar = styled.div`
 	height: 30px;
 	width: 30px;
 	border-radius: 50%;
-	background: #191b1f;
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	margin: 0 5px 0 0px;
 	color: #00ff5f;
 `;
@@ -122,17 +123,17 @@ export const StyledDropdown = styled(Dropdown)`
 
 	&:hover {
 		background: transparent;
-		color: #fff;
+		color: ${(props) => props.theme.styles[props.theme.current].color};
 	}
 
 	&:active {
 		background: transparent;
-		color: #fff;
+		color: ${(props) => props.theme.styles[props.theme.current].color};
 	}
 
 	&:focus {
 		background: transparent;
-		color: #fff;
+		color: ${(props) => props.theme.styles[props.theme.current].color};
 	}
 `;
 
@@ -146,10 +147,17 @@ export const ArrowDown = styled(ArrowDownSVG)`
 
 export const ThemeConverter = styled.div`
 	display: flex;
-	background: #2c2f36;
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	width: 57px;
 	height: 57px;
 	border-radius: 12px;
+	align-items: center;
+	justify-content: center;
+`;
+
+export const ThemeSVG = styled(Converter)`
+	cursor: pointer;
+	fill: ${(props) => props.theme.styles[props.theme.current].color};
 `;
 
 export const Overview = styled.span`
@@ -161,7 +169,7 @@ export const Overview = styled.span`
 export const NavMobile = styled.div`
 	display: flex;
 	width: 100%;
-	background: rgba(44, 45, 51, 1);
+	background: ${(props) => props.theme.styles[props.theme.current].componentBg};
 	z-index: 1;
 	position: fixed;
 	bottom: 0;
@@ -182,19 +190,19 @@ export const IconTitle = styled.div`
 `;
 
 export const OverviewSVG = styled(OverviewIcon)`
-	fill: ${(props) => (props.page === "/" ? "#00FC2A" : "#FFF")};
+	fill: ${(props) => (props.page === "/" ? "#00FC2A" : props.theme.styles[props.theme.current].color)};
 `;
 
 export const PortfolioSVG = styled(PortfolioIcon)`
-	fill: ${(props) => (props.page === "/portfolio" ? "#00FC2A" : "#FFF")};
+	fill: ${(props) => (props.page === "/portfolio" ? "#00FC2A" : props.theme.styles[props.theme.current].color)};
 `;
 
 export const SearchSVG = styled(Search)`
-	fill: ${(props) => (props.page === "/search" ? "#00FC2A" : "#FFF")};
+	fill: ${(props) => (props.page === "/search" ? "#00FC2A" : props.theme.styles[props.theme.current].color)};
 `;
 
 export const CloseSVG = styled(CloseArrow)`
-	fill: #fff;
+	fill: ${(props) => props.theme.styles[props.theme.current].color};
 	width: 15px;
 	height: auto;
 `;
@@ -204,7 +212,7 @@ export const SearchContainer = styled.div`
 	flex-flow: column;
 	width: 100%;
 	height: 90%;
-	background: rgba(23, 24, 33, 1);
+	background: ${(props) => props.theme.styles[props.theme.current].mainBg};
 	padding: 5px 15px 0 15px;
 `;
 
