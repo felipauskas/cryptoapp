@@ -8,12 +8,7 @@ import { ViewportProvider } from "utils";
 import { GlobalStyle, Wrapper } from "./theme/GlobalStyle/styles";
 
 export default function App() {
-	const [currency, setCurrency] = useState("usd");
 	const { theme } = useSelector((state) => state);
-
-	const handleCurrency = (currency) => {
-		setCurrency(currency.toLowerCase());
-	};
 
 	return (
 		<ViewportProvider>
@@ -21,11 +16,11 @@ export default function App() {
 				<ThemeProvider theme={theme}>
 					<GlobalStyle />
 					<Router>
-						<NavBar handleChange={handleCurrency} />
-						<MarketBar currency={currency} />
+						<NavBar />
+						<MarketBar />
 						<Switch>
-							<Route exact path="/" render={(props) => <Coins currency={currency} />} />
-							<Route exact path="/coins/:coin" render={(props) => <CoinDetails currency={currency} {...props} />} />
+							<Route exact path="/" component={Coins} />
+							<Route exact path="/coins/:coin" render={(props) => <CoinDetails {...props} />} />
 							<Route exact path="/portfolio" component={Portfolio} />
 						</Switch>
 					</Router>
@@ -33,5 +28,4 @@ export default function App() {
 			</Wrapper>
 		</ViewportProvider>
 	);
-	// }
 }

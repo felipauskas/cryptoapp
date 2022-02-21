@@ -17,7 +17,6 @@ export const StyledLink = styled(NavLink)`
 	height: 57px;
 	background: transparent;
 	border-radius: 12px;
-	/* color: #ffffff; */
 	color: ${(props) => props.theme.styles[props.theme.current].color};
 	text-decoration: none;
 	font-size: 18px;
